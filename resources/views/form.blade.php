@@ -44,7 +44,7 @@
                   <div class="col-md-6">
                     <div class="form-group form-group-lg control-group{{ $errors->has('nama') ? ' has-error' : '' }}">
                       <label>Nama Pemohon <span class="text-danger">*</span></label>
-                      <input name="nama" type="text" value="{{ old('nama') }}" class="form-control" placeholder="Text input">
+                      <input name="nama" type="text" value="{{ old('nama') }}" class="form-control" placeholder="Nama Pemohon">
                         @if ($errors->has('nama'))
                           <span class="help-block">
                             <strong style="color: red">{{ $errors->first('nama') }}</strong>
@@ -54,8 +54,8 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group form-group-lg">
-                      <label>No Telp/ Whatsapp <span class="text-danger">*</span></label>
-                      <input name="no_tlp" value="{{ old('no_tlp') }}" type="text" class="form-control" placeholder="Text input">
+                      <label>No Telp / Whatsapp <span class="text-danger">*</span></label>
+                      <input name="no_tlp" value="{{ old('no_tlp') }}" type="text" class="form-control" placeholder="No Telp / Whatsapp">
                         @if ($errors->has('no_tlp'))
                           <span class="help-block">
                             <strong style="color: red">{{ $errors->first('no_tlp') }}</strong>
@@ -83,8 +83,8 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group form-group-lg">
-                      <label>Lokasi/ Ruangan <span class="text-danger">*</span></label>
-                      <input name="ruangan" type="text" value="{{ old('ruangan') }}" class="form-control" placeholder="Text input">
+                      <label>Lokasi / Ruangan <span class="text-danger">*</span></label>
+                      <input name="ruangan" type="text" value="{{ old('ruangan') }}" class="form-control" placeholder="Lokasi / Ruangan">
                         @if ($errors->has('ruangan'))
                           <span class="help-block">
                             <strong style="color: red">{{ $errors->first('ruangan') }}</strong>
@@ -109,7 +109,7 @@
                         </span>
                       @endif
                       <br>
-                      <textarea name="deskripsi" class="form-control" rows="3" placeholder="Text input">{{ old('deskripsi') }}</textarea>
+                      <textarea name="deskripsi" class="form-control" rows="3" placeholder="Deskripsi Layanan / Keluhan / Gangguan">{{ old('deskripsi') }}</textarea>
                         @if ($errors->has('deskripsi'))
                           <span class="help-block">
                             <strong style="color: red">{{ $errors->first('deskripsi') }}</strong>
