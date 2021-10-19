@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,4 +47,14 @@ class User extends Authenticatable
     protected $casts = [
         // 'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all of the Laporan for the Sybjek
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function laporan(): HasMany
+    {
+        return $this->hasMany(Laporan::class, 'teknisi', 'kode_teknisi');
+    }
 }

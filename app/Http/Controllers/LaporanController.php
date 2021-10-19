@@ -18,7 +18,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Laporan::orderBy('status','ASC')->orderBy('id_laporan','DESC')->with('k_unit')->with('k_subjek')->get();
+        $laporan = Laporan::orderBy('status','ASC')->orderBy('id_laporan','DESC')->get();
         // $unit = Unit::orderBy('id_unit','ASC')->get();
         // $subjek = Subjek::orderBy('id_subjek','ASC')->get();
         // echo $laporan->kode_permohonan;
