@@ -20,7 +20,7 @@ class Laporan extends Model
      */
     public function k_unit(): BelongsTo
     {
-        return $this->belongsTo(Unit::class,'unit','kode_unit')->withTrashed();
+        return $this->belongsTo(Unit::class,'unit','kode_unit')->withTrashed(); //withTrashed() digunakan untuk mempertahankan relasi dengan data terhapus (Soft Delete)
     }
 
     /**

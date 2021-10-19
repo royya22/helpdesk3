@@ -22,7 +22,61 @@ class TeknisiController extends Controller
         $hitung['close'] = Laporan::where('status','like','3')->count();
 
         $teknisi = User::orderBy('id_teknisi','ASC')->get();
-        return view('dashboard.master-teknisi')->with('teknisi',$teknisi)->with('hitung',$hitung);
+
+        //Perulangan untuk menghitung jumlah laporan berdasarkan teknisi per bulan di tahun ini dan jumlah laporan per teknisi (total kanan)
+        $a = 1;
+        foreach ($teknisi as $key) {
+            $totalh[$a] = 0;
+            for ($i=1; $i < 13; $i++) {
+                $j = str_pad($i,2,"0",STR_PAD_LEFT);
+                $laporan[$a][$i] = Laporan::where('created_at','like',date('Y-'.$j).'%')->where('teknisi','like',$key->kode_teknisi)->count();
+                $j = (int) $j;
+                $totalh[$a] = $totalh[$a] + $laporan[$a][$i]; //Menghitung jumlah laporan per teknisi (total kanan)
+            }
+            $a++;
+        }
+
+        //Perulangan untuk menghitung jumlah laporan per bulan (total bawah)
+        for ($i=1; $i < 13; $i++) {
+            $totalv[$i] = 0;
+            $a = 1;
+            foreach($teknisi as $key){
+                $totalv[$i] = $totalv[$i] + $laporan[$a][$i];
+                $a++;
+            }
+            
+        }
+
+        //Perulangan untuk menghitung jumlah laporan keseluruhan (total kanan bawah)
+        $totalv[13] = 0;
+        $a = 1;
+        foreach($teknisi as $key){
+            
+            $totalv[13] = $totalv[13] + $totalh[$a];
+            $a++;
+        }
+
+        //Dummy tampilan
+        // echo "<br>";
+
+        // $a = 1;
+        // foreach ($teknisi as $key) {
+        //     for ($i=1; $i < 13; $i++) { 
+        //         echo $laporan[$a][$i]." ";
+                
+        //     }
+        //     echo $totalh[$a];
+        //     $a++;
+        //     echo "<br>";
+        // }
+
+        // // $totalv[$i] = 0;
+        // for ($i=1; $i < 13; $i++) {
+            
+        //     echo $totalv[$i]." ";
+        // } echo $totalv[13];
+
+        return view('dashboard.master-teknisi')->with('teknisi',$teknisi)->with('hitung',$hitung)->with('laporan',$laporan)->with('totalh',$totalh)->with('totalv',$totalv);
     }
 
     /**

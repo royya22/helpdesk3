@@ -84,39 +84,28 @@
                       <tfoot>
                         <tr class="success">
                           <th colspan="2">Total</th>
-                          <th><a href="#">23</a></th>
-                          <th><a href="#">64</a></th>
-                          <th><a href="#">23</a></th>
-                          <th><a href="#">45</a></th>
-                          <th><a href="#">36</a></th>
-                          <th><a href="#">326</a></th>
-                          <th><a href="#">89</a></th>
-                          <th><a href="#">85</a></th>
-                          <th><a href="#">56</a></th>
-                          <th><a href="#">23</a></th>
-                          <th><a href="#">74</a></th>
-                          <th><a href="#">34</a></th>
-                          <th><a href="#">2342</a></th>
+                          
+                            <?php for ($i=1; $i < 14; $i++) { 
+                              echo "<th>".$totalv[$i]."</th>";
+                            } ?>
+
                         </tr>
                       </tfoot>
                       <tbody>
+                        <?php $a = 1 ?>
                         @foreach ($unit as $unit)
                           <tr>
                             <th scope="row">{{ $unit->kode_unit }}</th>
                             <td><a href="{{ url('detail-unit', $unit->id_unit) }}">{{ $unit->nama_unit }}</a></td>
-                            <td><a href="#">5</a></td>
-                            <td><a href="#">4</a></td>
-                            <td><a href="#">2</a></td>
-                            <td><a href="#">5</a></td>
-                            <td><a href="#">7</a></td>
-                            <td><a href="#">9</a></td>
-                            <td><a href="#">3</a></td>
-                            <td><a href="#">5</a></td>
-                            <td><a href="#">8</a></td>
-                            <td><a href="#">3</a></td>
-                            <td><a href="#">8</a></td>
-                            <td><a href="#">2</a></td>
-                            <td><a href="#">87</a></td>
+
+                            <?php for ($i=1; $i < 13; $i++) {  ?>
+                              <td>{{ $laporan[$a][$i] }}</td>
+                            <?php } ?>
+
+                            <td>{{ $totalh[$a] }}</td>
+
+                            <?php $a++; ?>
+
                           </tr>
                         @endforeach
                       </tbody>

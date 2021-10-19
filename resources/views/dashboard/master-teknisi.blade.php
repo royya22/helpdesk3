@@ -84,39 +84,28 @@
                       <tfoot>
                         <tr class="success">
                           <th colspan="2">Total</th>
-                          <th>23</th>
-                          <th>64</th>
-                          <th>23</th>
-                          <th>45</th>
-                          <th>36</th>
-                          <th>326</th>
-                          <th>89</th>
-                          <th>85</th>
-                          <th>56</th>
-                          <th>23</th>
-                          <th>74</th>
-                          <th>34</th>
-                          <th>2342</th>
+
+                            <?php for ($i=1; $i < 14; $i++) { 
+                              echo "<th>".$totalv[$i]."</th>";
+                            } ?>
+
                         </tr>
                       </tfoot>
                       <tbody>
+                        <?php $a = 1 ?>
                         @foreach ($teknisi as $teknisi)
                           <tr>
                             <th scope="row">{{ $teknisi->kode_teknisi }}</th>
                             <td><a href="{{ url('detail-teknisi', $teknisi->id_teknisi) }}">{{ $teknisi->nama_teknisi }}</a></td>
-                            <td>5</td>
-                            <td>4</td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>7</td>
-                            <td>9</td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>8</td>
-                            <td>3</td>
-                            <td>8</td>
-                            <td>2</td>
-                            <td>87</td>
+                            
+                            <?php for ($i=1; $i < 13; $i++) {  ?>
+                              <td>{{ $laporan[$a][$i] }}</td>
+                            <?php } ?>
+
+                            <td>{{ $totalh[$a] }}</td>
+
+                            <?php $a++; ?>
+
                           </tr>
                         @endforeach
                       </tbody>
