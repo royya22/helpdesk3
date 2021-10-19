@@ -55,3 +55,9 @@ Route::get('delete-subjek/{id}','SubjekController@destroy');
 
 Route::get('teknisi','TeknisiController@index');
 Route::get('password','TeknisiController@ubah_password');
+Route::get('create-teknisi','TeknisiController@create');
+Route::post('store-teknisi','TeknisiController@store');
+Route::get('detail-teknisi/{id}','TeknisiController@show');
+Route::get('edit-teknisi/{id}','TeknisiController@edit');
+Route::post('update-teknisi/{id}','TeknisiController@update');
+Route::get('delete-teknisi/{id}','TeknisiController@destroy');

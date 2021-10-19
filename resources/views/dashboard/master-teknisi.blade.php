@@ -57,7 +57,7 @@
               <div class="panel panel-default address">
                 <br>
                 <div class="panel-heading">
-                  <h3 class="panel-title">Teknisi &nbsp; <small><a href="Insiden-detail.html"><span class="label label-info">+ Tambah Teknisi</span></a></small></h3>
+                  <h3 class="panel-title">Teknisi &nbsp; <small><a href="{{ url('create-teknisi') }}"><span class="label label-info">+ Tambah Teknisi</span></a></small></h3>
                 </div>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -100,23 +100,25 @@
                         </tr>
                       </tfoot>
                       <tbody>
-                        <tr>
-                          <th scope="row">XXI0921A</th>
-                          <td>Nama</td>
-                          <td>5</td>
-                          <td>4</td>
-                          <td>2</td>
-                          <td>5</td>
-                          <td>7</td>
-                          <td>9</td>
-                          <td>3</td>
-                          <td>5</td>
-                          <td>8</td>
-                          <td>3</td>
-                          <td>8</td>
-                          <td>2</td>
-                          <td>87</td>
-                        </tr>
+                        @foreach ($teknisi as $teknisi)
+                          <tr>
+                            <th scope="row">{{ $teknisi->kode_teknisi }}</th>
+                            <td><a href="{{ url('detail-teknisi', $teknisi->id_teknisi) }}">{{ $teknisi->nama_teknisi }}</a></td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>2</td>
+                            <td>5</td>
+                            <td>7</td>
+                            <td>9</td>
+                            <td>3</td>
+                            <td>5</td>
+                            <td>8</td>
+                            <td>3</td>
+                            <td>8</td>
+                            <td>2</td>
+                            <td>87</td>
+                          </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -137,10 +139,10 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../assets/js/jquery.min.js"><\/script>')</script>
-    <script src="../assets/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../assets/js/offcanvas.js"></script>
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/offcanvas.js"></script>
   </body>
 </html>

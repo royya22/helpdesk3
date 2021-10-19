@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -10,7 +9,7 @@
     <meta name="author" content="BSID">
     <link rel="icon" href="https://setjen.mpr.go.id/img/setjen-min.png">
 
-    <title>Detail Tiket</title>
+    <title>Detail Teknisi</title>
     
     <!-- Bootstrap core CSS -->
     <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -32,8 +31,7 @@
     <div class="container">
       <br>
       <p class="text-center">
-        {{-- <button type="button" class="btn btn-default"onclick="location.href='{{ url('open') }}';">&larr; Kembali</button>
-        <button type="button" class="btn btn-primary">Cetak</button> --}}
+        
       </p>
       <br>
       <div class="row">
@@ -49,8 +47,7 @@
                 </div>
                 <div class="col-md-8">
                   <br>
-                  <p class="text-center text-uppercase">
-                    <u><b>Formulir Perbaikan Jaringan dan Internet</b></u><br>
+                  <p class="text-center text-uppercase"><br>
                     <b>Bagian Sistem Informasi dan Data</b><br>
                     Biro Hubungan Masyarakat dan Sistem Informasi<br>
                     Setjen MPR RI
@@ -61,57 +58,29 @@
                 </div>
                 <div class="col-md-4">
                   <div class="well">
-                    <address>
-                      <u><strong>{{ $data->nama_pemohon }}</strong></u><br>
-                      {{ $data->unit }}<br>
-                      <abbr title="Phone">Kontak:</abbr> 
-                      <a href="#">{{ $data->no_tlp }}</a>
-                    </address>
+                    <div class="vertical center">
+                      <button type="button" class="btn btn-default" style="margin:3;" onclick="location.href='{{ url()->previous() }}';">Kembali</button>
+                      <button type="button" class="btn btn-primary" style="margin:3px;" onclick="location.href='{{ url('edit-teknisi',$data->id_teknisi) }}';">Edit</button>
+                      <a class="btn btn-danger" title="Hapus Unit" href="{{ url('delete-teknisi',$data->id_teknisi) }}" style="margin:3px;" onclick="return confirm('Apakah anda yakin mau menghapus data ini ?')">Hapus</a>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-8">
                   {{-- <img src="https://cdn-icons-png.flaticon.com/512/3572/3572055.png" class="status"> --}}
-                    <small>ID Formulir:</small>
-                    <h1>{{ $data->kode_permohonan }}</h1>
-                    <p>{{ $data->created_at }}</p>
+                    <small>Nama Teknisi</small>
+                    <h1>{{ $data->nama_teknisi }}</h1>
+                    {{-- <p>{{ $data->created_at }}</p> --}}
                     <hr>
-                    {{-- <br>
-                    <p>
-                      <b>Subjek: </b><br>
-                      <span style="font-size:24px">BSID01 - {{ $data->subjek }}</span>
-                    </p> --}}
                     <br>
                     <p>
-                      <b>Deskripsi: </b><br>
-                      <span>{{ $data->deskripsi }}</span>
+                      <small> Kode Teknisi </small> <br>
+                      <span style="font-size:24px">{{ $data->kode_teknisi }}</span>
                     </p>
                     <br>
-                    
                     <p>
-                      <b>Teknisi: </b><br>
-                      <span>BSID23 - Rizal Muslim</span>
+                      <small> Username Teknisi </small> <br>
+                      <span style="font-size:24px">{{ $data->user_teknisi }}</span>
                     </p>
-                    <br>
-                    <form class="form-horizontal" id="input-form" action="{{ url('store-close',$data->id_laporan) }}" method="post">
-                      {!! csrf_field() !!}
-                      <p>
-                        <label class="control-label">Keterangan Close</label>
-                        <div>
-                        <textarea name="keterangan_close" id="keterangan_close" class="form-control" rows="3" style="resize: none;" autofocus></textarea>
-                        @if ($errors->has('keterangan_close'))
-                          <span class="help-block">
-                            <strong style="color: red">{{ $errors->first('keterangan_close') }}</strong>
-                          </span>
-                        @endif
-                        </div>
-                      </p>
-                      <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9">
-                          <button type="button" class="btn btn-default"onclick="location.href='{{ url()->previous() }}';">Kembali</button>
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                      </div>
-                    </form>
                     <br>
                 </div>
               </div>
@@ -119,7 +88,7 @@
             </div>
           </div>
           <h5 class="text-center">
-            {{-- <a href="{{ url('close') }}">Kembali</a> --}}
+            {{-- <a href="{{ url('unit') }}">Kembali</a> --}}
           </h5>
         </div>
       </div>

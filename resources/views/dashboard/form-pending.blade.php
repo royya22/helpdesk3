@@ -108,7 +108,7 @@
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9">
                           <button type="button" class="btn btn-default"onclick="location.href='{{ url()->previous() }}';">Kembali</button>
-                          <button type="submit" class="btn btn-primary">Pending</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                       </div>
                     </form>

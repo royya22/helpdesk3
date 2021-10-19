@@ -17,7 +17,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -121,6 +121,8 @@
                 <br>
                 <p>
                   <button type="submit" class="btn btn-primary btn-lg text-uppercase">Kirim Formulir</button>
+                  &nbsp;  
+                  <button type="button" class="btn btn-default btn-lg text-uppercase" onclick="location.href='laporan';">Lihat Laporan</button>
                 </p>
                 <br>
               </form>
@@ -151,13 +153,11 @@
               </a>
             </div>
           </div>
-          <p>
-            <button type="button" class="btn btn-default btn-block text-uppercase" onclick="location.href='laporan';">Lihat Laporan</button>
-          </p>
-          <br>
-          <h5 class="text-center">
-            <a href="{{ url('/') }}">Kembali ke Beranda</a>
-          </h5>
+          
+          <!-- 16:9 aspect ratio -->
+          <div class="embed-responsive embed-responsive-16by9 videoplayback">
+            <iframe class="embed-responsive-item" src="assets/img/videoplayback.mp4"></iframe>
+          </div>
         </div>
       </div>
       <!-- Site footer -->
