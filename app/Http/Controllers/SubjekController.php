@@ -18,9 +18,64 @@ class SubjekController extends Controller
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
-        
+
         $subjek = Subjek::orderBy('id_subjek','ASC')->get();
-        return view('dashboard.master-subjek')->with('subjek',$subjek)->with('hitung',$hitung);
+        $c_subjek = Subjek::count();
+
+        $a = 1;
+        foreach ($subjek as $key) {
+            $totalh[$a] = 0;
+            for ($i=1; $i < 13; $i++) {
+                $j = str_pad($i,2,"0",STR_PAD_LEFT);
+                $laporan[$a][$i] = Laporan::where('created_at','like',date('Y-'.$j).'%')->where('subjek','like',$key->kode_subjek)->count();
+                $j = (int) $j;
+                $totalh[$a] = $totalh[$a] + $laporan[$a][$i];
+            }
+            $a++;
+        }
+
+        
+        for ($i=1; $i < 13; $i++) {
+            $totalv[$i] = 0;
+            $a = 1;
+            foreach($subjek as $key){
+                $totalv[$i] = $totalv[$i] + $laporan[$a][$i];
+                // echo $laporan[$a][$i]." ";
+                $a++;
+            }
+            
+        }
+
+        $totalv[13] = 0;
+        $a = 1;
+        foreach($subjek as $key){
+            
+            $totalv[13] = $totalv[13] + $totalh[$a];
+            // echo $totalh[$a]." ";
+            $a++;
+        }
+
+        // echo "<br>";
+
+        // $a = 1;
+        // foreach ($subjek as $key) {
+        //     for ($i=1; $i < 13; $i++) { 
+        //         echo $laporan[$a][$i]." ";
+                
+        //     }
+        //     echo $totalh[$a];
+        //     $a++;
+        //     echo "<br>";
+        // }
+
+        // // $totalv[$i] = 0;
+        // for ($i=1; $i < 13; $i++) {
+            
+        //     echo $totalv[$i]." ";
+        // } echo $totalv[13];
+        
+        // $subjek = Subjek::orderBy('id_subjek','ASC')->get();
+        return view('dashboard.master-subjek')->with('subjek',$subjek)->with('hitung',$hitung)->with('laporan',$laporan)->with('totalh',$totalh)->with('totalv',$totalv);
     }
 
     /**
