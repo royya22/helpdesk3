@@ -17,7 +17,7 @@ class InsidenController extends Controller
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
-        return view('dashboard.Insiden')->with('hitung',$hitung);
+        return view('dashboard.insiden')->with('hitung',$hitung);
     }
 
     /**
