@@ -20,7 +20,7 @@ class Laporan extends Model
      */
     public function k_unit(): BelongsTo
     {
-        return $this->belongsTo(Unit::class,'unit','kode_unit');
+        return $this->belongsTo(Unit::class,'unit','kode_unit')->withTrashed();
     }
 
     /**
@@ -30,7 +30,7 @@ class Laporan extends Model
      */
     public function k_subjek(): BelongsTo
     {
-        return $this->belongsTo(Subjek::class, 'subjek','kode_subjek');
+        return $this->belongsTo(Subjek::class, 'subjek','kode_subjek')->withTrashed();
     }
 
     /**
@@ -40,6 +40,6 @@ class Laporan extends Model
      */
     public function k_teknisi(): BelongsTo
     {
-        return $this->belongsTo(Teknisi::class, 'teknisi', 'kode_teknisi');
+        return $this->belongsTo(Teknisi::class, 'teknisi', 'kode_teknisi')->withTrashed();
     }
 }

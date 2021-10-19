@@ -20,7 +20,7 @@ class SubjekController extends Controller
         $hitung['close'] = Laporan::where('status','like','3')->count();
 
         $subjek = Subjek::orderBy('id_subjek','ASC')->get();
-        $c_subjek = Subjek::count();
+        // $c_subjek = Subjek::count();
 
         $a = 1;
         foreach ($subjek as $key) {
