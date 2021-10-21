@@ -103,7 +103,7 @@
                         Telepon
                       </label>
                     </div>
-                    <div class="radio disabled">
+                    <div class="radio">
                       <label>
                         <input type="radio" name="alur" id="alur" value="Disampaikan Langsung">
                         Disampaikan Langsung
