@@ -78,7 +78,7 @@
                         {{-- <option value=""></option> --}}
                         <option value="" disable="true" selected="true">--- Unit/Bagian ---</option>
                         @foreach ($biro as $biro => $unit)
-                          <option></option>
+                          <optgroup label="">
                           <optgroup label="{{$biro}}">
 
                           @foreach ($unit as $unit)
