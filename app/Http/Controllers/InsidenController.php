@@ -98,10 +98,10 @@ class InsidenController extends Controller
         $tambah->teknisi = serialize($request['teknisi']);
 
         // print_r(unserialize($tambah->kategori));
-        echo $tambah->kode_insiden;
+        // echo $tambah->kode_insiden;
 
-        // $tambah->save();
-        // return redirect()->to('insiden');
+        $tambah->save();
+        return redirect()->to('insiden');
     }
 
     /**
