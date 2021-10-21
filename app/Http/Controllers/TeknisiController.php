@@ -21,7 +21,7 @@ class TeknisiController extends Controller
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
 
-        $teknisi = User::orderBy('id_teknisi','ASC')->get();
+        $teknisi = User::orderBy('id_teknisi','ASC')->where('hide',false)->get();
 
         //Perulangan untuk menghitung jumlah laporan berdasarkan teknisi per bulan di tahun ini dan jumlah laporan per teknisi (total kanan)
         $a = 1;
@@ -194,14 +194,16 @@ class TeknisiController extends Controller
     public function destroy($id)
     {
         $hapus = User::find($id);
+        $hapus->hide = true;
+        $hapus->save();
 
-        //Hapus laporan terkait
-        foreach($hapus->laporan as $laporan){
-            $laporan->delete();
-        }
+        // //Hapus laporan terkait
+        // foreach($hapus->laporan as $laporan){
+        //     $laporan->delete();
+        // }
 
-        //Hapus teknisi
-        $hapus->delete();
+        // //Hapus teknisi
+        // $hapus->delete();
 
         return redirect()->to('teknisi');
     }

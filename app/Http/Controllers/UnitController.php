@@ -19,7 +19,7 @@ class UnitController extends Controller
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
         
-        $unit = Unit::orderBy('id_unit','ASC')->get();
+        $unit = Unit::orderBy('id_unit','ASC')->where('hide',false)->get();
 
         //Perulangan untuk menghitung jumlah laporan berdasarkan unit per bulan di tahun ini dan jumlah laporan per unit (total kanan)
         $a = 1;
@@ -171,14 +171,16 @@ class UnitController extends Controller
     public function destroy($id)
     {
         $hapus = Unit::find($id);
+        $hapus->hide = true;
+        $hapus->save();
 
-        //Hapus laporan terkait
-        foreach($hapus->laporan as $laporan){
-            $laporan->delete();
-        }
+        // //Hapus laporan terkait
+        // foreach($hapus->laporan as $laporan){
+        //     $laporan->delete();
+        // }
 
-        //Hapus unit
-        $hapus->delete();
+        // //Hapus unit
+        // $hapus->delete();
 
         return redirect()->to('unit');
     }

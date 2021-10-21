@@ -20,7 +20,7 @@ class SubjekController extends Controller
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
 
-        $subjek = Subjek::orderBy('id_subjek','ASC')->get();
+        $subjek = Subjek::orderBy('id_subjek','ASC')->where('hide',false)->get();
 
         //Perulangan untuk menghitung jumlah laporan berdasarkan subjek per bulan di tahun ini dan jumlah laporan per subjek (total kanan)
         $a = 1;
@@ -186,14 +186,16 @@ class SubjekController extends Controller
     public function destroy($id)
     {
         $hapus = Subjek::find($id);
+        $hapus->hide = true;
+        $hapus->save();
 
-        //Hapus laporan terkait
-        foreach($hapus->laporan as $laporan){
-            $laporan->delete();
-        }
+        // //Hapus laporan terkait
+        // foreach($hapus->laporan as $laporan){
+        //     $laporan->delete();
+        // }
 
-        //hapus subjek
-        $hapus->delete();
+        // //hapus subjek
+        // $hapus->delete();
 
         return redirect()->to('subjek');
     }
