@@ -73,30 +73,31 @@
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($insiden as $insiden)
                         <tr>
-                          <th scope="row">XXI0921A</th>
-                          <td>Jumat, <br> 26-7-2021</td>
-                          <td>AC Central Server Mati</td>
-                          <td>Bharana Lt.1</td>
-                          <td><span class="label label-danger">Open</span></td>
-                          <td><a href="Insiden-detail">detail</a></td>
+                          <th scope="row">{{ $insiden->kode_insiden }}</th>
+                          <td>{{ $daftar_hari[date('l', strtotime($insiden->tgl))] }}, <br> {{ $insiden->tgl }}</td>
+                          <td>{{ $insiden->deskripsi }}</td>
+                          <td>{{ $insiden->lokasi }}</td>
+                          <td><span style="display: inline-block; width: 100px;height: 20px;" class="label 
+                            <?php 
+                            if ($insiden->status == "open") {
+                              echo "label-danger";
+                            ?>"><p style="margin-top: 3px;color: white;font-weight: bold">Open</p><?php
+                              }elseif ($insiden->status == "pending") {
+                                echo "label-warning";
+                            ?>"><p style="margin-top: 3px;color: white;font-weight: bold">Pending</p><?php
+                              } elseif ($insiden->status == "close") {
+                                echo "label-success";
+                            ?>"><p style="margin-top: 3px;color: white;font-weight: bold">Close</p><?php
+                              }
+                            ?>
+                          </span></td>
+                          <td><a href="#">detail</a></td>
                         </tr>
-                        <tr>
-                          <th scope="row">XXI0921A</th>
-                          <td>Jumat, <br> 26-7-2021</td>
-                          <td>AC Central Server Mati</td>
-                          <td>Bharana Lt.1</td>
-                          <td><span class="label label-warning">Pending</span></td>
-                          <td><a href="Insiden-detail">detail</a></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">XXI0921A</th>
-                          <td>Jumat, <br> 26-7-2021</td>
-                          <td>AC Central Server Mati</td>
-                          <td>Bharana Lt.1</td>
-                          <td><span class="label label-success">Close</span></td>
-                          <td><a href="Insiden-detail">detail</a></td>
-                        </tr>
+                        @endforeach
+                        
+                        
                       </tbody>
                     </table>
                   </div>

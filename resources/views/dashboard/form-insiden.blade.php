@@ -37,7 +37,7 @@
     <div class="container">
       <br>
       <p class="text-center">
-        <button type="button" class="btn btn-default"onclick="location.href='{{ url()->previous() }}';">&larr; Kembali</button>
+        <button type="button" class="btn btn-default"onclick="location.href='{{ url('insiden') }}';">&larr; Kembali</button>
         <button type="button" class="btn btn-primary">Cetak</button>
       </p>
       <br>
@@ -59,15 +59,19 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">ID Insiden</label>
                   <div class="col-sm-9">
-                    <h1 class="text-uppercase">IND00001</h1>
-                    <input hidden type="text" name="kode_insiden" id="kode_insiden" class="span6" value=""/>
+                    <h1 class="text-uppercase">{{ $kode_insiden }}</h1>
+                    <input hidden type="text" name="kode_insiden" id="kode_insiden" class="span6" value="{{ $kode_insiden }}"/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Tanggal</label>
                   <div class="col-sm-9">
                     <input type="date" class="form-control" name="tgl">
-                    {{-- <small><span id="helpBlock" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span></small> --}}
+                    @if ($errors->has('tgl'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('tgl') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -77,6 +81,11 @@
                       <input type="time" class="form-control" name="jam">
                       <div class="input-group-addon">WIB</div>
                     </div>
+                    @if ($errors->has('jam'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('jam') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -100,12 +109,22 @@
                         Disampaikan Langsung
                       </label>
                     </div>
+                    @if ($errors->has('alur'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('alur') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Lokasi Insiden</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" style="resize: none;" name="lokasi"></textarea>
+                    @if ($errors->has('lokasi'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('lokasi') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -127,12 +146,22 @@
                           <option value="Jaringan">Jaringan</option>
                         </optgroup>
                     </select>
+                    @if ($errors->has('kategori'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('kategori') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Deskripsi</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" style="resize: none;" name="deskripsi"></textarea>
+                    @if ($errors->has('deskripsi'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('deskripsi') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -150,18 +179,33 @@
                         <i>Remote</i>
                       </label>
                     </div>
+                    @if ($errors->has('pengerjaan'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('pengerjaan') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Analisis</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" style="resize: none;" name="analisis"></textarea>
+                    @if ($errors->has('analisis'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('analisis') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Solusi</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" style="resize: none;" name="solusi"></textarea>
+                    @if ($errors->has('solusi'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('solusi') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -179,6 +223,11 @@
                         Tidak
                       </label>
                     </div>
+                    @if ($errors->has('eskalasi'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('eskalasi') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -202,6 +251,11 @@
                         <i>Close</i>
                       </label>
                     </div>
+                    @if ($errors->has('status'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('status') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 <div class="form-group">
@@ -209,10 +263,15 @@
                   <div class="col-sm-9">
                     <select class="form-control" multiple="multiple" id="teknisi" name="teknisi[]">
                       <option value=""></option>
-                      @foreach ($data as $data)
-                      <option value="{{ $data->nama_teknisi }}">{{ $data->nama_teknisi }}</option>
+                      @foreach ($teknisi as $data)
+                      <option value="{{ $data->kode_teknisi }}">{{ $data->nama_teknisi }}</option>
                       @endforeach
                     </select>
+                    @if ($errors->has('teknisi'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('teknisi') }}</strong>
+                      </span>
+                    @endif
                   </div>
                 </div>
                 {{-- <div class="form-group">

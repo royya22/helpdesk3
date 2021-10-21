@@ -59,7 +59,7 @@
                 <div class="col-md-4">
                   <div class="well">
                     <div class="vertical center">
-                      <button type="button" class="btn btn-default" style="margin:3;" onclick="location.href='{{ url()->previous() }}';">Kembali</button>
+                      <button type="button" class="btn btn-default" style="margin:3;" onclick="location.href='{{ url('unit') }}';">Kembali</button>
                       <button type="button" class="btn btn-primary" style="margin:3px;" onclick="location.href='{{ url('edit-unit',$data->id_unit) }}';">Edit</button>
                       <a class="btn btn-danger" title="Hapus Unit" href="{{ url('delete-unit',$data->id_unit) }}" style="margin:3px;" onclick="return confirm('Apakah anda yakin mau menghapus data ini ?')">Hapus</a>
                     </div>
