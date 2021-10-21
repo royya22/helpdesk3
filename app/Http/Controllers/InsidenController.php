@@ -6,6 +6,7 @@ use App\Models\Insiden;
 use App\Models\Laporan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PHPUnit\TextUI\XmlConfiguration\IniSetting;
 
 class InsidenController extends Controller
 {
@@ -110,9 +111,10 @@ class InsidenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        // return view('dashboard.Insiden-detail');
+        $insiden = Insiden::find($id);
+        return view('dashboard.detail-insiden')->with('insiden',$insiden);
     }
 
     /**
@@ -147,5 +149,21 @@ class InsidenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pending($id)
+    {
+        $pending = Insiden::find($id);
+        $pending->status = "pending";
+        $pending->save();
+        return redirect()->to('insiden');
+    }
+
+    public function close($id)
+    {
+        $close = Insiden::find($id);
+        $close->status = "close";
+        $close->save();
+        return redirect()->to('insiden');
     }
 }

@@ -93,7 +93,7 @@
                               }
                             ?>
                           </span></td>
-                          <td><a href="#">detail</a></td>
+                          <td><a href="{{ url('detail-insiden',$insiden->id_insiden) }}">detail</a></td>
                         </tr>
                         @endforeach
                         

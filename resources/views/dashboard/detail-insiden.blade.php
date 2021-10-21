@@ -9,7 +9,7 @@
     <meta name="author" content="BSID">
     <link rel="icon" href="https://setjen.mpr.go.id/img/setjen-min.png">
 
-    <title>Detail Teknisi</title>
+    <title>Detail Insiden</title>
     
     <!-- Bootstrap core CSS -->
     <link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -57,30 +57,76 @@
                   <br><hr><br>
                 </div>
                 <div class="col-md-4">
-                  <div class="well">
+                  <div class="well" style="width: 235px">
                     <div class="vertical center">
-                      <button type="button" class="btn btn-default" style="margin:3px;" onclick="location.href='{{ url('teknisi') }}';">Kembali</button>
-                      <button type="button" class="btn btn-primary" style="margin:3px;" onclick="location.href='{{ url('edit-teknisi',$data->id_teknisi) }}';">Edit</button>
-                      <a class="btn btn-danger" title="Hapus Unit" href="{{ url('delete-teknisi',$data->id_teknisi) }}" style="margin:3px;" onclick="return confirm('Apakah anda yakin mau menghapus data ini ?')">Hapus</a>
+                      <button type="button" class="btn btn-default" style="margin:2px;" onclick="location.href='{{ url('insiden') }}';">Kembali</button>
+                      <?php if ($insiden->status == "open") {?>
+                        <button type="button" class="btn btn-primary" style="margin:2px;" onclick="location.href='{{ url('pending-insiden',$insiden->id_insiden) }}';">Pending</button>
+                        <a class="btn btn-danger" title="Hapus Unit" href="{{ url('close-insiden',$insiden->id_insiden) }}" style="margin:2px;">Close</a>
+                      <?php
+                      } ?>
+                      <?php if ($insiden->status == "pending") {?>
+                        <a class="btn btn-danger" title="Hapus Unit" href="{{ url('close-insiden',$insiden->id_insiden) }}" style="margin:2px;">Close</a>
+                      <?php
+                      } ?>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-8">
                   {{-- <img src="https://cdn-icons-png.flaticon.com/512/3572/3572055.png" class="status"> --}}
-                    <small>Nama Teknisi</small>
-                    <h1>{{ $data->nama_teknisi }}</h1>
+                    <small>ID Insiden</small>
+                    <h1>{{ $insiden->kode_insiden }}</h1>
                     {{-- <p>{{ $data->created_at }}</p> --}}
                     <hr>
                     <br>
                     <p>
-                      <small> Kode Teknisi </small> <br>
-                      <span style="font-size:24px">{{ $data->kode_teknisi }}</span>
+                      <small> Tanggal / Jam </small> <br>
+                      <span style="font-size:18px">{{ $insiden->tgl }} / {{ $insiden->jam }}</span>
                     </p>
                     <br>
                     <p>
-                      <small> Username Teknisi </small> <br>
-                      <span style="font-size:24px">{{ $data->user_teknisi }}</span>
+                      <small> Penyampaian </small> <br>
+                      <span style="font-size:18px">{{ $insiden->penyampaian }}</span>
                     </p>
+                    <br>
+                    <p>
+                      <small> Lokasi </small> <br>
+                      <span style="font-size:18px">{{ $insiden->lokasi }}</span>
+                    </p>
+                    <br>
+                    <p>
+                      <small> Kategori </small> <br>
+                      @foreach (unserialize($insiden->kategori) as $kategori)
+                        => <span style="font-size:18px">{{ $kategori }}</span>
+                        <br>
+                      @endforeach
+                    </p>
+                    <br>
+                    <p>
+                      <small> Deskripsi </small> <br>
+                      <span style="font-size:18px">{{ $insiden->deskripsi }}</span>
+                    </p>
+                    <br>
+                    <p>
+                      <small> Pengerjaan </small> <br>
+                      <span style="font-size:18px">{{ $insiden->pengerjaan }}</span>
+                    </p>
+                    <br>
+                    <p>
+                      <small> Analisis </small> <br>
+                      <span style="font-size:18px">{{ $insiden->analisis }}</span>
+                    </p>
+                    <br>
+                    <p>
+                      <small> Solusi </small> <br>
+                      <span style="font-size:18px">{{ $insiden->solusi }}</span>
+                    </p>
+                    <br>
+                    <p>
+                      <small> Eskalasi </small> <br>
+                      <span style="font-size:18px">{{ $insiden->eskalasi }}</span>
+                    </p>
+                    <br>
                     <br>
                 </div>
               </div>

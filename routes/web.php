@@ -36,7 +36,9 @@ Route::get('close-detail/{id}','TiketController@close_detail');
 Route::get('insiden','InsidenController@index');
 Route::get('create-insiden','InsidenController@create');
 Route::post('store-insiden','InsidenController@store');
-// Route::get('Insiden-detail','InsidenController@show');
+Route::get('detail-insiden/{id}','InsidenController@show');
+Route::get('pending-insiden/{id}','InsidenController@pending');
+Route::get('close-insiden/{id}','InsidenController@close');
 
 Route::get('unit','UnitController@index');
 Route::get('create-unit','UnitController@create');
