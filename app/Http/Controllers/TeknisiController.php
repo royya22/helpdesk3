@@ -194,9 +194,13 @@ class TeknisiController extends Controller
     public function destroy($id)
     {
         $hapus = User::find($id);
+
+        //Hapus laporan terkait
         foreach($hapus->laporan as $laporan){
             $laporan->delete();
         }
+
+        //Hapus teknisi
         $hapus->delete();
 
         return redirect()->to('teknisi');

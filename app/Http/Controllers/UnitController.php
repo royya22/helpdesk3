@@ -171,9 +171,13 @@ class UnitController extends Controller
     public function destroy($id)
     {
         $hapus = Unit::find($id);
+
+        //Hapus laporan terkait
         foreach($hapus->laporan as $laporan){
             $laporan->delete();
         }
+
+        //Hapus unit
         $hapus->delete();
 
         return redirect()->to('unit');

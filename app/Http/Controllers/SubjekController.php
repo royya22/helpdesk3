@@ -159,9 +159,20 @@ class SubjekController extends Controller
             ]);
         }
 
-        $update->kode_subjek = strtoupper($request['kode_subjek']);
+        $subjek_baru = strtoupper($request['kode_subjek']);
+
+        //Update laporan terkait
+        foreach ($update->laporan as $laporan) {
+            $kode = substr($laporan->kode_permohonan,3);
+            
+            $laporan->update(['kode_permohonan' => $subjek_baru ."".$kode ]);
+            $laporan->update(['subjek' => $subjek_baru]);
+        }
+
+        $update->kode_subjek = $subjek_baru;
         $update->subjek = $request['subjek'];
 
+        //update subjek
         $update->save();
         return redirect()->to('subjek');
     }
@@ -175,9 +186,13 @@ class SubjekController extends Controller
     public function destroy($id)
     {
         $hapus = Subjek::find($id);
+
+        //Hapus laporan terkait
         foreach($hapus->laporan as $laporan){
             $laporan->delete();
         }
+
+        //hapus subjek
         $hapus->delete();
 
         return redirect()->to('subjek');
