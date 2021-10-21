@@ -23,6 +23,14 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- css untuk select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- jika menggunakan bootstrap4 gunakan css ini  -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <!-- cdn bootstrap4 -->
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> --}}
   </head>
   <body class="background">
     <!-- Begin page content -->
@@ -66,12 +74,19 @@
                   <div class="col-md-6">
                     <div class="form-group form-group-lg">
                       <label>Unit/ Bagian <span class="text-danger">*</span></label>
-                      <select name="unit" class="form-control">
-
+                      <select id="unit" name="unit" class="form-control">
+                        {{-- <option value=""></option> --}}
                         <option value="" disable="true" selected="true">--- Unit/Bagian ---</option>
-                        @foreach ($unit as $unit)
-                        <option value="{{ $unit->kode_unit }}">{{ $unit->nama_unit }}</option>
+                        @foreach ($biro as $biro => $unit)
+                          <option></option>
+                          <optgroup label="{{$biro}}">
+
+                          @foreach ($unit as $unit)
+                            <option value="{{ $unit->kode_unit }}">{{ $unit->nama_unit }}</option>
+                          @endforeach
+
                         @endforeach
+                        
                         
                       </select>
                         @if ($errors->has('unit'))
@@ -92,6 +107,17 @@
                         @endif
                     </div>
                   </div>
+                  {{-- <div class="form-group form-group-lg">
+                    <label class="col-sm-3 control-label">Ditangani Oleh</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="teknisi" name="teknisi[]">
+                        <option value=""></option>
+                        @foreach ($teknisi as $data)
+                        <option value="{{ $data->nama_teknisi }}">{{ $data->nama_teknisi }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div> --}}
                   <div class="col-md-12">
                     <div class="form-group form-group-lg">
                       <label>Subyek dan Deskripsi <span class="text-danger">*</span></label>
@@ -177,5 +203,26 @@
     <script src="assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- wajib jquery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <!-- js untuk bootstrap4  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <!-- js untuk select2  -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // $("#teknisi").select2({
+            //     placeholder: "--- Teknisi ---"
+            // });
+
+            // $("#unit").select2({
+            //     placeholder: "--- Unit/Bagian ---"
+            // });
+        });
+    </script>
   </body>
 </html>

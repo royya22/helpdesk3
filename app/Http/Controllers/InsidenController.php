@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laporan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InsidenController extends Controller
@@ -27,7 +28,8 @@ class InsidenController extends Controller
      */
     public function create()
     {
-        return view('dashboard.form-insiden');
+        $data = User::get();
+        return view('dashboard.form-insiden')->with('data',$data);
     }
 
     /**
@@ -38,7 +40,7 @@ class InsidenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

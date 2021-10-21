@@ -10,7 +10,7 @@ class TiketController extends Controller
 {
     public function open()
     {
-        $data = Laporan::where('status','like','1')->orderBy('id_laporan','ASC')->get();
+        $data = Laporan::where('status','like','1')->orderBy('id_laporan','DESC')->get();
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
@@ -28,7 +28,7 @@ class TiketController extends Controller
 
     public function pending()
     {
-        $data = Laporan::where('status','like','2')->orderBy('id_laporan','ASC')->get();
+        $data = Laporan::where('status','like','2')->orderBy('id_laporan','DESC')->get();
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
@@ -66,7 +66,7 @@ class TiketController extends Controller
 
     public function close()
     {
-        $data = Laporan::where('status','like','3')->orderBy('id_laporan','ASC')->get();
+        $data = Laporan::where('status','like','3')->orderBy('id_laporan','DESC')->get();
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();

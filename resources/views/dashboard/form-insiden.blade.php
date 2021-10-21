@@ -23,6 +23,14 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- css untuk select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- jika menggunakan bootstrap4 gunakan css ini  -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <!-- cdn bootstrap4 -->
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> --}}
   </head>
   <body class="dashboard">
     <!-- Begin page content -->
@@ -46,25 +54,27 @@
                 </p>
               </center>
               <hr>
-              <form class="form-horizontal">
+              <form class="form-horizontal" action="{{ url('store-insiden') }}" method="post">
+                {!! csrf_field() !!}
                 <div class="form-group">
                   <label class="col-sm-3 control-label">ID Insiden</label>
                   <div class="col-sm-9">
-                    <h1 class="text-uppercase">XXI0921A</h1>
+                    <h1 class="text-uppercase">IND00001</h1>
+                    <input hidden type="text" name="kode_insiden" id="kode_insiden" class="span6" value=""/>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Tanggal</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control">
-                    <small><span id="helpBlock" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span></small>
+                    <input type="date" class="form-control" name="tgl">
+                    {{-- <small><span id="helpBlock" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span></small> --}}
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Waktu</label>
                   <div class="col-sm-9">
                     <div class="input-group">
-                      <input type="time" class="form-control">
+                      <input type="time" class="form-control" name="jam">
                       <div class="input-group-addon">WIB</div>
                     </div>
                   </div>
@@ -74,19 +84,19 @@
                   <div class="col-sm-9">
                     <div class="radio">
                       <label>
-                        <input type="radio" name="plot" id="plot1" value="email" checked>
+                        <input type="radio" name="alur" id="alur" value="Melalui Surat Elektronik" checked>
                         Melalui Surat Elektronik
                       </label>
                     </div>
                     <div class="radio">
                       <label>
-                        <input type="radio" name="plot" id="plot2" value="call">
+                        <input type="radio" name="alur" id="alur" value="Telepon">
                         Telepon
                       </label>
                     </div>
                     <div class="radio disabled">
                       <label>
-                        <input type="radio" name="plot" id="plot3" value="walkin">
+                        <input type="radio" name="alur" id="alur" value="Disampaikan Langsung">
                         Disampaikan Langsung
                       </label>
                     </div>
@@ -95,51 +105,34 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Lokasi Insiden</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" style="resize: none;"></textarea>
+                    <textarea class="form-control" rows="3" style="resize: none;" name="lokasi"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Kategori</label>
                   <div class="col-sm-9">
-                    <div class="well col-sm-4">
-                      <span id="helpBlock" class="help-block">Hardware</span>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Kabel</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Listrik</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Switch</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Server</label>
-                      </div>
-                    </div>
-                    <div class="well col-sm-4">
-                      <span id="helpBlock" class="help-block">Software</span>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Email</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Antivirus</label>
-                      </div>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">APK</label>
-                      </div>
-                    </div>
-                    <div class="well col-sm-4">
-                      <span id="helpBlock" class="help-block">Network</span>
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="">Jaringan</label>
-                      </div>
-                    </div>
+                    <select class="form-control" multiple="multiple" id="kategori" name="kategori[]">
+                        <optgroup label="Hardware">
+                          <option value="Kabel">Kabel</option>
+                          <option value="Listrik">Listrik</option>
+                          <option value="Switch">Switch</option>
+                          <option value="Server">Server</option>
+                        </optgroup>
+                        <optgroup label="Software">
+                          <option value="Email">Email</option>
+                          <option value="Antivirus">Antivirus</option>
+                          <option value="APK">APK</option>
+                        </optgroup>
+                        <optgroup label="Network">
+                          <option value="Jaringan">Jaringan</option>
+                        </optgroup>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Deskripsi</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" style="resize: none;"></textarea>
+                    <textarea class="form-control" rows="3" style="resize: none;" name="deskripsi"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
@@ -147,14 +140,14 @@
                   <div class="col-sm-9">
                     <div class="radio">
                       <label>
-                        <input type="radio" name="repair" id="repair1" value="come" checked>
+                        <input type="radio" name="pengerjaan" id="pengerjaan" value="Mendatangi" checked>
                         Mendatangi
                       </label>
                     </div>
                     <div class="radio">
                       <label>
-                        <input type="radio" name="repair" id="repair2" value="remote">
-                        <i>Remote Control</i>
+                        <input type="radio" name="pengerjaan" id="pengerjaan" value="Remote">
+                        <i>Remote</i>
                       </label>
                     </div>
                   </div>
@@ -162,13 +155,13 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Analisis</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" style="resize: none;"></textarea>
+                    <textarea class="form-control" rows="3" style="resize: none;" name="analisis"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Solusi</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" style="resize: none;"></textarea>
+                    <textarea class="form-control" rows="3" style="resize: none;" name="solusi"></textarea>
                   </div>
                 </div>
                 <div class="form-group">
@@ -176,13 +169,13 @@
                   <div class="col-sm-9">
                     <div class="radio">
                       <label>
-                        <input type="radio" name="escalation" id="escalation1" value="yes">
+                        <input type="radio" name="eskalasi" id="eskalasi" value="Ya">
                         Ya
                       </label>
                     </div>
                     <div class="radio">
                       <label>
-                        <input type="radio" name="escalation" id="escalation2" value="no" checked>
+                        <input type="radio" name="eskalasi" id="eskalasi" value="Tidak" checked>
                         Tidak
                       </label>
                     </div>
@@ -214,23 +207,23 @@
                 <div class="form-group">
                   <label class="col-sm-3 control-label">Ditangani Oleh</label>
                   <div class="col-sm-9">
-                    <select class="form-control">
-                      <option>Catur</option>
-                      <option>Rizal</option>
-                      <option>Firly</option>
-                      <option>Royya</option>
+                    <select class="form-control" multiple="multiple" id="teknisi" name="teknisi[]">
+                      <option value=""></option>
+                      @foreach ($data as $data)
+                      <option value="{{ $data->nama_teknisi }}">{{ $data->nama_teknisi }}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label class="col-sm-3 control-label">Solusi</label>
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" style="resize: none;"></textarea>
                   </div>
-                </div>
+                </div> --}}
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-9">
-                    <button type="submit" class="btn btn-primary">Inputkan</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
               </form>
@@ -245,6 +238,7 @@
     </div>
     <!-- Bootstrap core JavaScript
       ================================================== -->
+    
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
@@ -253,5 +247,26 @@
     <script src="assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- wajib jquery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <!-- js untuk bootstrap4  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <!-- js untuk select2  -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#teknisi").select2({
+                placeholder: "Please Select"
+            });
+
+            $("#kategori").select2({
+                placeholder: "Please Select"
+            });
+        });
+    </script>
   </body>
 </html>

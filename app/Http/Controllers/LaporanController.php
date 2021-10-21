@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Laporan;
 use App\Models\Subjek;
 use App\Models\Unit;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +35,15 @@ class LaporanController extends Controller
     {
         $unit = Unit::orderBy('id_unit','ASC')->get();
         $subjek = Subjek::orderBy('id_subjek','ASC')->get();
-        return view('form')->with('unit',$unit)->with('subjek',$subjek);
+        $biro = $unit->groupBy('biro');
+        
+        // foreach ($biro as $biro => $unit) {
+        //     echo $biro."<br>";
+        //     foreach ($unit as $unit) {
+        //         echo $unit."<br>";
+        //     }    echo "<br>";
+        // }
+        return view('form')->with('unit',$unit)->with('subjek',$subjek)->with('biro',$biro);
     }
 
     /**
