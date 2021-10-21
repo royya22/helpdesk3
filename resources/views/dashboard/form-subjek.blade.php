@@ -31,7 +31,7 @@
     <div class="container">
       <br>
       <p class="text-center">
-        <button type="button" class="btn btn-default"onclick="location.href='{{ url()->previous() }}';">&larr; Kembali</button>
+        <button type="button" class="btn btn-default"onclick="location.href='{{ url('subjek') }}';">&larr; Kembali</button>
         <button type="button" class="btn btn-primary">Cetak</button>
       </p>
       <br>

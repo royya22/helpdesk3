@@ -73,6 +73,11 @@
                     <hr>
                     <br>
                     <p>
+                      <small> Biro </small> <br>
+                      <span style="font-size:24px">{{ $data->biro }}</span>
+                    </p>
+                    <br>
+                    <p>
                       <small> Kode Unit </small> <br>
                       <span style="font-size:24px">{{ $data->kode_unit }}</span>
                     </p>

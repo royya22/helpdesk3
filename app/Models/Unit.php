@@ -13,7 +13,7 @@ class Unit extends Model
     use SoftDeletes;
     protected $table = 'unit';
     protected $primaryKey = 'id_unit';
-    protected $fillable = ['kode_unit','nama_unit'];
+    protected $fillable = ['kode_unit','nama_unit','biro'];
 
     /**
      * Get all of the Laporan for the Sybjek

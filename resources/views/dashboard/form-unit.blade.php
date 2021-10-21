@@ -31,7 +31,7 @@
     <div class="container">
       <br>
       <p class="text-center">
-        <button type="button" class="btn btn-default"onclick="location.href='{{ url()->previous() }}';">&larr; Kembali</button>
+        <button type="button" class="btn btn-default"onclick="location.href='{{ url('unit') }}';">&larr; Kembali</button>
         <button type="button" class="btn btn-primary">Cetak</button>
       </p>
       <br>
@@ -65,6 +65,28 @@
                     @if ($errors->has('unit'))
                       <span class="help-block">
                         <strong style="color: red">{{ $errors->first('unit') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Nama Biro</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="biro" name="biro">
+                        <option value="" disable="true" selected="true">--- Biro ---</option>
+                        <option value="PERSIDANGAN DAN PEMASYARAKATAN KONSTITUSI">PERSIDANGAN DAN PEMASYARAKATAN KONSTITUSI</option>
+                        <option value="PENGKAJIAN KONSTITUSI">PENGKAJIAN KONSTITUSI</option>
+                        <option value="SEKRETARIAT PIMPINAN">SEKRETARIAT PIMPINAN</option>
+                        <option value="BIRO SDM, ORGANISASI DAN HUKUM">BIRO SDM, ORGANISASI DAN HUKUM</option>
+                        <option value="PERENCANAAN DAN KEUANGAN">PERENCANAAN DAN KEUANGAN</option>
+                        <option value="HUBUNGAN MASYARAKAT DAN SISTEM INFORMASI">HUBUNGAN MASYARAKAT DAN SISTEM INFORMASI</option>
+                        <option value="UMUM">UMUM</option>
+                        <option value="INSPEKTORAT">INSPEKTORAT</option>
+                    </select>
+                    @if ($errors->has('biro'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('biro') }}</strong>
                       </span>
                     @endif
                   </div>

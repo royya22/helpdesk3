@@ -69,6 +69,28 @@
                     @endif
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Nama Biro</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" id="biro" name="biro">
+                        <option value="" disable="true">--- Biro ---</option>
+                        <option value="PERSIDANGAN DAN PEMASYARAKATAN KONSTITUSI" <?php if($data->biro == "PERSIDANGAN DAN PEMASYARAKATAN KONSTITUSI"){echo "selected='true'";} ?>>PERSIDANGAN DAN PEMASYARAKATAN KONSTITUSI</option>
+                        <option value="PENGKAJIAN KONSTITUSI" <?php if($data->biro == "PENGKAJIAN KONSTITUSI"){echo "selected='true'";} ?>>PENGKAJIAN KONSTITUSI</option>
+                        <option value="SEKRETARIAT PIMPINAN" <?php if($data->biro == "SEKRETARIAT PIMPINAN"){echo "selected='true'";} ?>>SEKRETARIAT PIMPINAN</option>
+                        <option value="BIRO SDM, ORGANISASI DAN HUKUM" <?php if($data->biro == "BIRO SDM, ORGANISASI DAN HUKUM"){echo "selected='true'";} ?>>BIRO SDM, ORGANISASI DAN HUKUM</option>
+                        <option value="PERENCANAAN DAN KEUANGAN" <?php if($data->biro == "PERENCANAAN DAN KEUANGAN"){echo "selected='true'";} ?>>PERENCANAAN DAN KEUANGAN</option>
+                        <option value="HUBUNGAN MASYARAKAT DAN SISTEM INFORMASI" <?php if($data->biro == "HUBUNGAN MASYARAKAT DAN SISTEM INFORMASI"){echo "selected='true'";} ?>>HUBUNGAN MASYARAKAT DAN SISTEM INFORMASI</option>
+                        <option value="UMUM" <?php if($data->biro == "UMUM"){echo "selected='true'";} ?>>UMUM</option>
+                        <option value="INSPEKTORAT" <?php if($data->biro == "INSPEKTORAT"){echo "selected='true'";} ?>>INSPEKTORAT</option>
+                    </select>
+                    @if ($errors->has('biro'))
+                      <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('biro') }}</strong>
+                      </span>
+                    @endif
+                  </div>
+                </div>
                 
                 <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-9">
