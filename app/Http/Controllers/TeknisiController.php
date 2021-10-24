@@ -7,6 +7,7 @@ use App\Models\Teknisi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class TeknisiController extends Controller
 {
@@ -17,6 +18,11 @@ class TeknisiController extends Controller
      */
     public function index()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
@@ -86,6 +92,11 @@ class TeknisiController extends Controller
      */
     public function create()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = User::select('kode_teknisi')->max('kode_teknisi');
         // echo $data;
         if ($data == null) {
@@ -112,6 +123,11 @@ class TeknisiController extends Controller
      */
     public function store(Request $request)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $this->validate($request, [
             'nama_teknisi' => 'required',
             'user_teknisi' => 'required|unique:teknisi',
@@ -136,6 +152,11 @@ class TeknisiController extends Controller
      */
     public function show($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = User::find($id);
         return view('dashboard.detail-teknisi')->with('data',$data);
     }
@@ -148,6 +169,11 @@ class TeknisiController extends Controller
      */
     public function edit($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = User::find($id);
         return view('dashboard.edit-teknisi')->with('data',$data);
     }
@@ -161,6 +187,11 @@ class TeknisiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $update = User::where('id_teknisi',$id)->first();
 
         if ($request['user_teknisi'] == $update->user_teknisi) {
@@ -193,6 +224,11 @@ class TeknisiController extends Controller
      */
     public function destroy($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $hapus = User::find($id);
         $hapus->hide = true;
         $hapus->save();
@@ -210,6 +246,37 @@ class TeknisiController extends Controller
 
     public function ubah_password()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         return view('dashboard.password');
+    }
+
+    public function update_password(Request $request)
+    {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+
+        $this->validate($request, [
+            'lama' => 'required',
+            'baru' => 'required|string|min:3|confirmed',
+        ]);
+
+        $user = Session::get('username');
+        $update = User::where('user_teknisi',$user)->first();
+        $pass = Hash::check($request['lama'],$update->password_teknisi);
+
+        if ($pass == 1) {
+            $update->password_teknisi = Hash::make($request['baru']);
+            $update->save();
+        }else {
+            return redirect()->to('password?pesan=gagal');
+        }
+        
+        return redirect()->to('dashboard');
     }
 }

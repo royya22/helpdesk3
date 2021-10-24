@@ -32,25 +32,38 @@
       </div>
       <div class="row">
         <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-default address">
-            <div class="panel-body">
-              <br>
-              <b>ID Pengguna</b>
-              <input type="text" class="form-control input-lg" placeholder="Text input">
-              <br>
-              <b>Kata Sandi</b>
-              <input type="password" class="form-control input-lg" placeholder="Pass">
-              <br>
-              <p class="text-muted">Selalu jaga data dan kerahasiaan</p>
+          
+          <form id="input-form" action="{{ url('cek-login') }}" method="post">
+            {!! csrf_field() !!}
+            <div class="panel panel-default address">
+              <div class="panel-body">
+                <?php 
+                if(isset($_GET['pesan'])){
+                  if($_GET['pesan']=="gagal1"){
+                    echo "<div class='alert'>Username tidak ditemukan!</div>";
+                  }else if($_GET['pesan']=="gagal2"){
+                    echo "<div class='alert'>Username dan Password tidak sesuai!</div>";
+                  }
+                }
+                ?>
+                <br>
+                <b>ID Pengguna</b>
+                <input name="user" type="text" class="form-control input-lg" placeholder="Username">
+                <br>
+                <b>Kata Sandi</b>
+                <input name="pass" type="password" class="form-control input-lg" placeholder="Password">
+                <br>
+                <p class="text-muted">Selalu jaga data dan kerahasiaan</p>
+              </div>
             </div>
-          </div>
-          <p>
-            <button type="button" class="btn btn-default btn-block text-uppercase" onclick="location.href='dashboard/index.html';">Masuk</button>
-          </p>
-          <br>
-          <h5 class="text-center">
-            <a href="{{ url('/') }}">Kembali ke Beranda</a>
-          </h5>
+            <p>
+              <button type="submit" class="btn btn-default btn-block text-uppercase">Masuk</button>
+            </p>
+            <br>
+            <h5 class="text-center">
+              <a href="{{ url('/') }}">Kembali ke Beranda</a>
+            </h5>
+          </form>
         </div>
       </div>
     </div>

@@ -57,7 +57,7 @@
               <div class="panel panel-default address">
                 <div class="panel-body">
                   <br>
-                  <h4>Semangat pagi, Rizal!</h4>
+                  <h4>Semangat pagi, {{ Session::get('nama') }}</h4>
                   <br>
                   <p>
                     Gimana kabarnya?

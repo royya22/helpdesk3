@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Laporan;
 use App\Models\Subjek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SubjekController extends Controller
 {
@@ -15,6 +16,11 @@ class SubjekController extends Controller
      */
     public function index()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         //Ambil data untuk perhitungan open, pending, close di menu
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
@@ -87,6 +93,11 @@ class SubjekController extends Controller
      */
     public function create()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         return view('dashboard.form-subjek');
     }
 
@@ -98,6 +109,11 @@ class SubjekController extends Controller
      */
     public function store(Request $request)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         // echo "tesssss";
         $this->validate($request, [
             'kode_subjek' => 'required|unique:subjek',
@@ -120,6 +136,11 @@ class SubjekController extends Controller
      */
     public function show($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = Subjek::find($id);
         return view('dashboard.detail-subjek')->with('data',$data);
     }
@@ -132,6 +153,11 @@ class SubjekController extends Controller
      */
     public function edit($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = Subjek::find($id);
         return view('dashboard.edit-subjek')->with('data',$data);
     }
@@ -145,6 +171,11 @@ class SubjekController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $update = Subjek::where('id_subjek',$id)->first();
 
         if ($request['kode_subjek'] == $update->kode_subjek) {
@@ -185,6 +216,11 @@ class SubjekController extends Controller
      */
     public function destroy($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $hapus = Subjek::find($id);
         $hapus->hide = true;
         $hapus->save();

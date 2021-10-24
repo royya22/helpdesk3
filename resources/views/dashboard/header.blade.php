@@ -14,7 +14,7 @@
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <form class="navbar-form navbar-right">
-                  <button type="button" class="btn btn-danger" onclick="location.href='login';">Keluar</button>
+                  <button type="button" class="btn btn-danger" onclick="location.href='logout';">Keluar</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="password">Ubah Kata Sandi</a></li>

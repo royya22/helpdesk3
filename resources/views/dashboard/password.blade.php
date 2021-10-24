@@ -44,20 +44,43 @@
                 </p>
               </center>
               <hr>
-              <form>
+              <?php 
+                if(isset($_GET['pesan'])){
+                  if($_GET['pesan']=="gagal"){
+                    echo "<div class='alert'>Password lama tidak sesuai!</div>";
+                  }
+                }
+              ?>
+              <form id="input-form" action="{{ url('ubah-password') }}" method="post">
+                {!! csrf_field() !!}
                 <div class="form-group">
                   <label>Kata Sandi Lama</label>
-                  <input type="password" class="form-control input-lg" placeholder="Password">
+                  <input name="lama" type="password" class="form-control input-lg" placeholder="Password" required>
+                      @if ($errors->has('lama'))
+                        <span class="help-block">
+                          <strong style="color: red">{{ $errors->first('lama') }}</strong>
+                        </span>
+                      @endif
                 </div>
                 <div class="form-group">
                   <label>Kata Sandi Baru</label>
-                  <input type="password" class="form-control input-lg" placeholder="Password">
+                  <input name="baru" type="password" class="form-control input-lg" placeholder="Password" required>
+                      @if ($errors->has('baru'))
+                        <span class="help-block">
+                          <strong style="color: red">{{ $errors->first('baru') }}</strong>
+                        </span>
+                      @endif
                 </div>
                 <div class="form-group">
                   <label>Ulangi Kata Sandi Baru</label>
-                  <input type="password" class="form-control input-lg" placeholder="Password">
+                  <input name="baru_confirmation" type="password" class="form-control input-lg" placeholder="Password" required>
+                      @if ($errors->has('baru_confirmation'))
+                        <span class="help-block">
+                          <strong style="color: red">{{ $errors->first('baru_confirmation') }}</strong>
+                        </span>
+                      @endif
                 </div>
-                <button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> &nbsp; Ubah Kata Sandi</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> &nbsp; Ubah Kata Sandi</button>
               </form>
               <br>
             </div>

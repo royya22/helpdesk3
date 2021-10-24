@@ -17,6 +17,14 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([[
+            'kode_teknisi' => 'T000',
+            'nama_teknisi' => 'BSID',
+            'user_teknisi' => 'bsid',
+            'password_teknisi' => Hash::make('bsid'),
+            'created_at' => new DateTime('now'),
+            'updated_at' => new DateTime('now')
+        ],
+        [
             'kode_teknisi' => 'T001',
             'nama_teknisi' => 'Catur',
             'user_teknisi' => 'ctr',

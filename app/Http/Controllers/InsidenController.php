@@ -6,6 +6,7 @@ use App\Models\Insiden;
 use App\Models\Laporan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use PHPUnit\TextUI\XmlConfiguration\IniSetting;
 
 class InsidenController extends Controller
@@ -17,6 +18,11 @@ class InsidenController extends Controller
      */
     public function index()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
@@ -43,6 +49,11 @@ class InsidenController extends Controller
      */
     public function create()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $teknisi = User::get();
 
         $insiden = Insiden::select('kode_insiden')->max('kode_insiden');
@@ -67,6 +78,11 @@ class InsidenController extends Controller
      */
     public function store(Request $request)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $this->validate($request, [
             'kode_insiden' => 'required',
             'tgl' => 'required',
@@ -113,6 +129,11 @@ class InsidenController extends Controller
      */
     public function show($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $insiden = Insiden::find($id);
         return view('dashboard.detail-insiden')->with('insiden',$insiden);
     }
@@ -153,6 +174,11 @@ class InsidenController extends Controller
 
     public function pending($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $pending = Insiden::find($id);
         $pending->status = "pending";
         $pending->save();
@@ -161,6 +187,11 @@ class InsidenController extends Controller
 
     public function close($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $close = Insiden::find($id);
         $close->status = "close";
         $close->save();

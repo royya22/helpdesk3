@@ -22,6 +22,8 @@ Route::get('create-laporan','LaporanController@create');
 Route::post('store-laporan','LaporanController@store');
 
 Route::get('login','DashboardController@login');
+Route::post('cek-login','DashboardController@cek_login');
+Route::get('logout','DashboardController@logout');
 Route::get('dashboard','DashboardController@index');
 
 Route::get('open','TiketController@open');
@@ -58,6 +60,7 @@ Route::get('delete-subjek/{id}','SubjekController@destroy');
 
 Route::get('teknisi','TeknisiController@index');
 Route::get('password','TeknisiController@ubah_password');
+Route::post('ubah-password','TeknisiController@update_password');
 Route::get('create-teknisi','TeknisiController@create');
 Route::post('store-teknisi','TeknisiController@store');
 Route::get('detail-teknisi/{id}','TeknisiController@show');

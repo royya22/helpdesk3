@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Laporan;
 use App\Models\Unit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UnitController extends Controller
 {
@@ -15,6 +16,11 @@ class UnitController extends Controller
      */
     public function index()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $hitung['open'] = Laporan::where('status','like','1')->count();
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
@@ -84,6 +90,11 @@ class UnitController extends Controller
      */
     public function create()
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = Unit::select('kode_unit')->max('kode_unit');
 
         if ($data == null) {
@@ -105,6 +116,11 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $this->validate($request, [
             'unit' => 'required',
         ]);
@@ -125,6 +141,11 @@ class UnitController extends Controller
      */
     public function show($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = Unit::find($id);
         return view('dashboard.detail-unit')->with('data',$data);
     }
@@ -137,6 +158,11 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $data = Unit::find($id);
         return view('dashboard.edit-unit')->with('data',$data);
     }
@@ -150,6 +176,11 @@ class UnitController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $this->validate($request, [
             'unit' => 'required',
         ]);
@@ -170,6 +201,11 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
         $hapus = Unit::find($id);
         $hapus->hide = true;
         $hapus->save();
