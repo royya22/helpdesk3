@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
   </head>
 
   <body class="dashboard">
@@ -59,9 +60,10 @@
                 <div class="panel-heading">
                   <h3 class="panel-title">CLose</h3>
                 </div>
+                <br>
                 <div class="panel-body">
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table id="myTable" class="display">
                       <thead>
                         <tr>
                           <th class="col-xs-1">ID Form</th>
@@ -96,17 +98,6 @@
                       </tbody>
                     </table>
                   </div>
-                  <nav aria-label="..."  style="margin-bottom:-4px">
-                    <ul class="pagination">
-                      <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                      <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                    </ul>
-                  </nav>
                   <br>
                 </div>
               </div>
@@ -126,5 +117,14 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="assets/js/offcanvas.js"></script>
+    <script src="{{ URL::asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/jquery.dataTables.bootstrap.js') }}"></script>
+    <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready( function () {
+          $('#myTable').DataTable();
+      } );
+    </script>
   </body>
 </html>

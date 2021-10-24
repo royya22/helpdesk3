@@ -32,6 +32,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
   </head>
 
   <body class="dashboard">
@@ -59,9 +60,10 @@
                 <div class="panel-heading">
                   <h3 class="panel-title">Subjek &nbsp; <small><a href="{{ url('create-subjek') }}"><span class="label label-info">+ Tambah Subjek</span></a></small></h3>
                 </div>
+                <br>
                 <div class="panel-body">
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table id="myTablee" class="table table-striped">
                       <thead>
                         <tr>
                           <th>ID Subjek</th>
@@ -133,5 +135,14 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="assets/js/offcanvas.js"></script>
+    <script src="{{ URL::asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/jquery.dataTables.bootstrap.js') }}"></script>
+    <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready( function () {
+          $('#myTable').DataTable();
+      } );
+    </script>
   </body>
 </html>
