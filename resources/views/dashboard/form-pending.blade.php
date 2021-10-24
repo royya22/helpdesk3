@@ -86,12 +86,6 @@
                       <span>{{ $data->deskripsi }}</span>
                     </p>
                     <br>
-                    
-                    <p>
-                      <b>Teknisi: </b><br>
-                      <span>BSID23 - Rizal Muslim</span>
-                    </p>
-                    <br>
                     <form class="form-horizontal" id="input-form" action="{{ url('store-pending',$data->id_laporan) }}" method="post">
                       {!! csrf_field() !!}
                       <p>

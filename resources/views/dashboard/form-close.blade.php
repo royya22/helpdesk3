@@ -26,6 +26,11 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- css untuk select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- jika menggunakan bootstrap4 gunakan css ini  -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
   </head>
   <body class="dashboard">
     <!-- Begin page content -->
@@ -95,9 +100,25 @@
                     <form class="form-horizontal" id="input-form" action="{{ url('store-close',$data->id_laporan) }}" method="post">
                       {!! csrf_field() !!}
                       <p>
+                        <label class="control-label">Ditangani Oleh</label>
+                        <div>
+                          <select class="form-control" multiple="multiple" id="teknisi" name="teknisi[]">
+                            <option value=""></option>
+                            @foreach ($teknisi as $data)
+                            <option value="{{ $data->kode_teknisi }}">{{ $data->nama_teknisi }}</option>
+                            @endforeach
+                          </select>
+                          @if ($errors->has('teknisi'))
+                            <span class="help-block">
+                              <strong style="color: red">{{ $errors->first('teknisi') }}</strong>
+                            </span>
+                          @endif
+                        </div>
+                      </p>
+                      <p>
                         <label class="control-label">Keterangan Close</label>
                         <div>
-                        <textarea name="keterangan_close" id="keterangan_close" class="form-control" rows="3" style="resize: none;" autofocus></textarea>
+                        <textarea name="keterangan_close" id="keterangan_close" class="form-control" rows="3" style="resize: none;"></textarea>
                         @if ($errors->has('keterangan_close'))
                           <span class="help-block">
                             <strong style="color: red">{{ $errors->first('keterangan_close') }}</strong>
@@ -134,5 +155,26 @@
     <script src="{{ URL::asset('assets/js/holder.min.js') }}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ URL::asset('assets/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <!-- wajib jquery  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <!-- js untuk bootstrap4  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <!-- js untuk select2  -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#teknisi").select2({
+                placeholder: "Please Select"
+            });
+
+            $("#kategori").select2({
+                placeholder: "Please Select"
+            });
+        });
+    </script>
   </body>
 </html>

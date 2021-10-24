@@ -35,7 +35,7 @@ class TeknisiController extends Controller
             $totalh[$a] = 0;
             for ($i=1; $i < 13; $i++) {
                 $j = str_pad($i,2,"0",STR_PAD_LEFT);
-                $laporan[$a][$i] = Laporan::where('created_at','like',date('Y-'.$j).'%')->where('teknisi','like',$key->kode_teknisi)->count();
+                $laporan[$a][$i] = Laporan::where('created_at','like',date('Y-'.$j).'%')->where('teknisi','like','%'.$key->kode_teknisi.'%')->count();
                 $j = (int) $j;
                 $totalh[$a] = $totalh[$a] + $laporan[$a][$i]; //Menghitung jumlah laporan per teknisi (total kanan)
             }

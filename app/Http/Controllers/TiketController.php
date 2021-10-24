@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laporan;
+use App\Models\Teknisi;
+use App\Models\User;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -74,11 +76,11 @@ class TiketController extends Controller
         }
         
         $this->validate($request, [
-            'keterangan_pending' => 'required',
-            // 'teknisi' => 'required'
+            'keterangan_pending' => 'required'
         ]);
 
         $pending = Laporan::find($id);
+        $pending->teknisi = serialize($request['teknisi']);
         $pending->keterangan_pending = $request['keterangan_pending'];
         $pending->status = "2";
         $pending->save();
@@ -115,8 +117,9 @@ class TiketController extends Controller
             return redirect()->to('/');
         }
         
+        $teknisi = User::get();
         $data = Laporan::find($id);
-        return view('dashboard.form-close')->with('data',$data);
+        return view('dashboard.form-close')->with('data',$data)->with('teknisi',$teknisi);
     }
 
     public function store_close(Request $request, $id)
@@ -128,10 +131,11 @@ class TiketController extends Controller
         
         $this->validate($request, [
             'keterangan_close' => 'required',
-            // 'teknisi' => 'required'
+            'teknisi' => 'required'
         ]);
 
         $pending = Laporan::find($id);
+        $pending->teknisi = serialize($request['teknisi']);
         $pending->keterangan_close = $request['keterangan_close'];
         $pending->status = "3";
         $pending->save();
