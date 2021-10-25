@@ -11,7 +11,7 @@
     <link rel="icon" href="https://setjen.mpr.go.id/img/setjen-min.png">
     <link rel="canonical" href="https://getbootstrap.com/docs/3.4/examples/offcanvas/">
 
-    <title>Master Subjek</title>
+    <title>Master Bagian</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -35,39 +35,29 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
   </head>
 
-  <body class="dashboard">
-
-    @section('menu')
-      <?php $menu = "subjek"; ?>
-    @endsection
-
-    @include('dashboard.header')
-
-    <div class="container">
-
-      <div class="row row-offcanvas row-offcanvas-left">
-
-        @include('dashboard.menu')
-
-        <div class="col-xs-12 col-sm-9">
-          <p class="visible-xs">
-            <button type="button" class="btn btn-primary" data-toggle="offcanvas">Menu</button>
-          </p>
-          <div class="row">
-            <div class="col-md-12">
+  <body class="dashboard" onload="window.print();">
+   
               <div class="panel panel-default address">
                 <br>
-                <div class="panel-heading">
-                  <h3 class="panel-title">Subjek &nbsp; <small><a href="{{ url('create-subjek') }}"><span class="label label-info">+ Tambah Subjek</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-subjek') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
-                </div>
+                <center>
+                  <img class="img-responsive" alt="Responsive image" src="{{ URL::asset('assets/img/sid.svg') }}" style="max-width:50px">
+                </center>
+                <br>
+                <p class="text-center text-uppercase">
+                  <u><b>Report Perbaikan Jaringan dan Internet Per Unit / Bagian</b></u><br>
+                  <b>Bagian Sistem Informasi dan Data</b><br>
+                  Biro Hubungan Masyarakat dan Sistem Informasi<br>
+                  Setjen MPR RI
+                </p>
+                <br>
                 <br>
                 <div class="panel-body">
                   <div class="table-responsive">
-                    <table id="myTablee" class="table table-striped">
+                    <table id="myTablee" class="table table-bordered">
                       <thead>
                         <tr>
-                          <th>ID Subjek</th>
-                          <th>Nama Subjek</th>
+                          <th>ID Bagian</th>
+                          <th>Nama Bagian</th>
                           <th>Jan</th>
                           <th>Feb</th>
                           <th>Mar</th>
@@ -86,25 +76,25 @@
                       <tfoot>
                         <tr class="success">
                           <th colspan="2">Total</th>
-
+                          
                             <?php for ($i=1; $i < 14; $i++) { 
-                              echo "<th>".$totalv[$i]."</th>";
+                              echo "<th  style='text-align: center'>".$totalv[$i]."</th>";
                             } ?>
-                            
+
                         </tr>
                       </tfoot>
                       <tbody>
                         <?php $a = 1 ?>
-                        @foreach ($subjek as $subjek)
+                        @foreach ($unit as $unit)
                           <tr>
-                            <th scope="row">{{ $subjek->kode_subjek }}</th>
-                            <td><a href="{{ url('detail-subjek', $subjek->id_subjek) }}">{{ $subjek->subjek }}</a></td>
+                            <th scope="row">{{ $unit->kode_unit }}</th>
+                            <td>{{ $unit->nama_unit }}</td>
 
                             <?php for ($i=1; $i < 13; $i++) {  ?>
-                                <td>{{ $laporan[$a][$i] }}</td>
+                              <td style="text-align: center">{{ $laporan[$a][$i] }}</td>
                             <?php } ?>
 
-                            <td>{{ $totalh[$a] }}</td>
+                            <td style="text-align: center">{{ $totalh[$a] }}</td>
 
                             <?php $a++; ?>
 
@@ -113,17 +103,14 @@
                       </tbody>
                     </table>
                   </div>
+                  <br>
                   <p style="margin:0">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button>
+                    {{-- <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button> --}}
                   </p>
                   <br>
                 </div>
               </div>
             </div>
-          </div>
-        </div><!--/.col-xs-12.col-sm-9-->
-      </div><!--/row-->
-    </div><!--/.container-->
 
 
     <!-- Bootstrap core JavaScript
@@ -141,8 +128,53 @@
     <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
       $(document).ready( function () {
-          $('#myTable').DataTable();
+          $('#myTable').DataTable({
+            
+          });
       } );
+    </script>
+    <script>
+
+
+      var css = '@page { size: landscape; }',
+    
+    
+        head = document.head || document.getElementsByTagName('head')[0],
+    
+    
+        style = document.createElement('style');
+    
+    
+    style.type = 'text/css';
+    
+    
+    style.media = 'print';
+    
+    
+     
+    
+    
+    if (style.styleSheet){
+    
+    
+      style.styleSheet.cssText = css;
+    
+    
+    } else {
+    
+    
+      style.appendChild(document.createTextNode(css));
+    
+    
+    }
+    
+    
+     
+    
+    
+    head.appendChild(style);
+    
+    
     </script>
   </body>
 </html>

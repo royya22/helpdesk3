@@ -235,4 +235,49 @@ class SubjekController extends Controller
 
         return redirect()->to('subjek');
     }
+
+    public function cetak_pdf()
+    {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+
+        $subjek = Subjek::orderBy('id_subjek','ASC')->where('hide',false)->get();
+
+        //Perulangan untuk menghitung jumlah laporan berdasarkan subjek per bulan di tahun ini dan jumlah laporan per subjek (total kanan)
+        $a = 1;
+        foreach ($subjek as $key) {
+            $totalh[$a] = 0;
+            for ($i=1; $i < 13; $i++) {
+                $j = str_pad($i,2,"0",STR_PAD_LEFT);
+                $laporan[$a][$i] = Laporan::where('created_at','like',date('Y-'.$j).'%')->where('subjek','like',$key->kode_subjek)->count();
+                $j = (int) $j;
+                $totalh[$a] = $totalh[$a] + $laporan[$a][$i]; //Menghitung jumlah laporan per subjek (total kanan)
+            }
+            $a++;
+        }
+
+        //Perulangan untuk menghitung jumlah laporan per bulan (total bawah)
+        for ($i=1; $i < 13; $i++) {
+            $totalv[$i] = 0;
+            $a = 1;
+            foreach($subjek as $key){
+                $totalv[$i] = $totalv[$i] + $laporan[$a][$i];
+                $a++;
+            }
+            
+        }
+
+        //Perulangan untuk menghitung jumlah laporan keseluruhan (total kanan bawah)
+        $totalv[13] = 0;
+        $a = 1;
+        foreach($subjek as $key){
+            
+            $totalv[13] = $totalv[13] + $totalh[$a];
+            $a++;
+        }
+        
+        return view('dashboard.cetak-subjek')->with('subjek',$subjek)->with('laporan',$laporan)->with('totalh',$totalh)->with('totalv',$totalv);
+    }
 }

@@ -58,7 +58,7 @@
               <div class="panel panel-default address">
                 <br>
                 <div class="panel-heading">
-                  <h3 class="panel-title">Teknisi &nbsp; <small><a href="{{ url('create-teknisi') }}"><span class="label label-info">+ Tambah Teknisi</span></a></small></h3>
+                  <h3 class="panel-title">Teknisi &nbsp; <small><a href="{{ url('create-teknisi') }}"><span class="label label-info">+ Tambah Teknisi</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-teknisi') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
                 </div>
                 <br>
                 <div class="panel-body">

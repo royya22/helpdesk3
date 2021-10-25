@@ -50,6 +50,7 @@ Route::get('detail-unit/{id}','UnitController@show');
 Route::get('edit-unit/{id}','UnitController@edit');
 Route::post('update-unit/{id}','UnitController@update');
 Route::get('delete-unit/{id}','UnitController@destroy');
+Route::get('cetak-unit','UnitController@cetak_pdf');
 
 Route::get('subjek','SubjekController@index');
 Route::get('create-subjek','SubjekController@create');
@@ -58,6 +59,7 @@ Route::get('detail-subjek/{id}','SubjekController@show');
 Route::get('edit-subjek/{id}','SubjekController@edit');
 Route::post('update-subjek/{id}','SubjekController@update');
 Route::get('delete-subjek/{id}','SubjekController@destroy');
+Route::get('cetak-subjek','SubjekController@cetak_pdf');
 
 Route::get('teknisi','TeknisiController@index');
 Route::get('password','TeknisiController@ubah_password');
@@ -68,4 +70,4 @@ Route::get('detail-teknisi/{id}','TeknisiController@show');
 Route::get('edit-teknisi/{id}','TeknisiController@edit');
 Route::post('update-teknisi/{id}','TeknisiController@update');
 Route::get('delete-teknisi/{id}','TeknisiController@destroy');
-Route::get('cetak-teknisi/{id}','TeknisiController@cetak_pdf');
+Route::get('cetak-teknisi','TeknisiController@cetak_pdf');

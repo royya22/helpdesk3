@@ -35,35 +35,25 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
   </head>
 
-  <body class="dashboard">
-
-    @section('menu')
-      <?php $menu = "teknisi"; ?>
-    @endsection
-    
-    @include('dashboard.header')
-
-    <div class="container">
-
-      <div class="row row-offcanvas row-offcanvas-left">
-
-        @include('dashboard.menu')
-
-        <div class="col-xs-12 col-sm-9">
-          <p class="visible-xs">
-            <button type="button" class="btn btn-primary" data-toggle="offcanvas">Menu</button>
-          </p>
-          <div class="row">
-            <div class="col-md-12">
+  <body class="dashboard" onload="window.print();">
+   
               <div class="panel panel-default address">
                 <br>
-                <div class="panel-heading">
-                  <h3 class="panel-title">Teknisi &nbsp; <small><a href="{{ url('create-teknisi') }}"><span class="label label-info">+ Tambah Teknisi</span></a></small></h3>
-                </div>
+                <center>
+                  <img class="img-responsive" alt="Responsive image" src="{{ URL::asset('assets/img/sid.svg') }}" style="max-width:50px">
+                </center>
+                <br>
+                <p class="text-center text-uppercase">
+                  <u><b>Report Perbaikan Jaringan dan Internet Per Teknisi</b></u><br>
+                  <b>Bagian Sistem Informasi dan Data</b><br>
+                  Biro Hubungan Masyarakat dan Sistem Informasi<br>
+                  Setjen MPR RI
+                </p>
+                <br>
                 <br>
                 <div class="panel-body">
                   <div class="table-responsive">
-                    <table id="myTablee" class="table table-striped">
+                    <table id="myTablee" class="table table-bordered">
                       <thead>
                         <tr>
                           <th>ID Teknisi</th>
@@ -86,9 +76,9 @@
                       <tfoot>
                         <tr class="success">
                           <th colspan="2">Total</th>
-
+                          
                             <?php for ($i=1; $i < 14; $i++) { 
-                              echo "<th>".$totalv[$i]."</th>";
+                              echo "<th  style='text-align: center'>".$totalv[$i]."</th>";
                             } ?>
 
                         </tr>
@@ -98,13 +88,13 @@
                         @foreach ($teknisi as $teknisi)
                           <tr>
                             <th scope="row">{{ $teknisi->kode_teknisi }}</th>
-                            <td><a href="{{ url('detail-teknisi', $teknisi->id_teknisi) }}">{{ $teknisi->nama_teknisi }}</a></td>
-                            
+                            <td>{{ $teknisi->nama_teknisi }}</td>
+
                             <?php for ($i=1; $i < 13; $i++) {  ?>
-                              <td>{{ $laporan[$a][$i] }}</td>
+                              <td style="text-align: center">{{ $laporan[$a][$i] }}</td>
                             <?php } ?>
 
-                            <td>{{ $totalh[$a] }}</td>
+                            <td style="text-align: center">{{ $totalh[$a] }}</td>
 
                             <?php $a++; ?>
 
@@ -113,17 +103,14 @@
                       </tbody>
                     </table>
                   </div>
+                  <br>
                   <p style="margin:0">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button>
+                    {{-- <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button> --}}
                   </p>
                   <br>
                 </div>
               </div>
             </div>
-          </div>
-        </div><!--/.col-xs-12.col-sm-9-->
-      </div><!--/row-->
-    </div><!--/.container-->
 
 
     <!-- Bootstrap core JavaScript
@@ -141,8 +128,53 @@
     <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
       $(document).ready( function () {
-          $('#myTable').DataTable();
+          $('#myTable').DataTable({
+            
+          });
       } );
+    </script>
+    <script>
+
+
+      var css = '@page { size: landscape; }',
+    
+    
+        head = document.head || document.getElementsByTagName('head')[0],
+    
+    
+        style = document.createElement('style');
+    
+    
+    style.type = 'text/css';
+    
+    
+    style.media = 'print';
+    
+    
+     
+    
+    
+    if (style.styleSheet){
+    
+    
+      style.styleSheet.cssText = css;
+    
+    
+    } else {
+    
+    
+      style.appendChild(document.createTextNode(css));
+    
+    
+    }
+    
+    
+     
+    
+    
+    head.appendChild(style);
+    
+    
     </script>
   </body>
 </html>
