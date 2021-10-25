@@ -91,12 +91,6 @@
                       <span>{{ $data->deskripsi }}</span>
                     </p>
                     <br>
-                    
-                    <p>
-                      <b>Teknisi: </b><br>
-                      <span>BSID23 - Rizal Muslim</span>
-                    </p>
-                    <br>
                     <form class="form-horizontal" id="input-form" action="{{ url('store-close',$data->id_laporan) }}" method="post">
                       {!! csrf_field() !!}
                       <p>
@@ -105,7 +99,7 @@
                           <select class="form-control" multiple="multiple" id="teknisi" name="teknisi[]">
                             <option value=""></option>
                             @foreach ($teknisi as $data)
-                            <option value="{{ $data->kode_teknisi }}">{{ $data->nama_teknisi }}</option>
+                            <option value="{{ $data->kode_teknisi }} - {{ $data->nama_teknisi }}">{{ $data->nama_teknisi }}</option>
                             @endforeach
                           </select>
                           @if ($errors->has('teknisi'))

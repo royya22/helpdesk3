@@ -97,7 +97,11 @@
                     <br>
                     <p>
                       <b>Teknisi: </b><br>
-                      <span>{{ $data->teknisi }} - {{ $data->k_teknisi->nama_teknisi }}</span>
+                      
+                      @foreach (unserialize($data->teknisi) as $teknisi)
+                        => <span>{{ $teknisi }}</span>
+                        <br>
+                      @endforeach
                     </p>
                     <br>
                     <p>
