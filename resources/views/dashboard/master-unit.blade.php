@@ -58,7 +58,10 @@
               <div class="panel panel-default address">
                 <br>
                 <div class="panel-heading">
-                  <h3 class="panel-title">Bagian &nbsp; <small><a href="{{ url('create-unit') }}"><span class="label label-info">+ Tambah Bagian</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-unit') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
+                  <h3 class="panel-title">Bagian 
+                    @if (Session::get('username') == 'bsid')
+                      &nbsp; <small><a href="{{ url('create-unit') }}"><span class="label label-info">+ Tambah Bagian</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-unit') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
+                    @endif
                 </div>
                 <br>
                 <div class="panel-body">
@@ -98,7 +101,7 @@
                         @foreach ($unit as $unit)
                           <tr>
                             <th scope="row">{{ $unit->kode_unit }}</th>
-                            <td><a href="{{ url('detail-unit', $unit->id_unit) }}">{{ $unit->nama_unit }}</a></td>
+                            <td>@if (Session::get('username') == 'bsid')<a href="{{ url('detail-unit', $unit->id_unit) }}">{{ $unit->nama_unit }}</a>@else {{ $unit->nama_unit }} @endif</td>
 
                             <?php for ($i=1; $i < 13; $i++) {  ?>
                               <td>{{ $laporan[$a][$i] }}</td>

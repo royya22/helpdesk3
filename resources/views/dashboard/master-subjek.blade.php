@@ -58,8 +58,12 @@
               <div class="panel panel-default address">
                 <br>
                 <div class="panel-heading">
-                  <h3 class="panel-title">Subjek &nbsp; <small><a href="{{ url('create-subjek') }}"><span class="label label-info">+ Tambah Subjek</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-subjek') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
-                </div>
+                  <h3 class="panel-title">Subjek
+                    @if (Session::get('username') == 'bsid')
+                      &nbsp; <small><a href="{{ url('create-subjek') }}"><span class="label label-info">+ Tambah Subjek</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-subjek') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small>
+                      </h3>
+                    @endif
+                  </div>
                 <br>
                 <div class="panel-body">
                   <div class="table-responsive">
@@ -98,7 +102,7 @@
                         @foreach ($subjek as $subjek)
                           <tr>
                             <th scope="row">{{ $subjek->kode_subjek }}</th>
-                            <td><a href="{{ url('detail-subjek', $subjek->id_subjek) }}">{{ $subjek->subjek }}</a></td>
+                            <td>@if (Session::get('username') == 'bsid')<a href="{{ url('detail-subjek', $subjek->id_subjek) }}">{{ $subjek->subjek }}</a>@else {{ $subjek->subjek }} @endif</td>
 
                             <?php for ($i=1; $i < 13; $i++) {  ?>
                                 <td>{{ $laporan[$a][$i] }}</td>
@@ -114,7 +118,7 @@
                     </table>
                   </div>
                   <p style="margin:0">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button>
+                    {{-- <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button> --}}
                   </p>
                   <br>
                 </div>

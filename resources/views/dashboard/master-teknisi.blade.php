@@ -58,7 +58,10 @@
               <div class="panel panel-default address">
                 <br>
                 <div class="panel-heading">
-                  <h3 class="panel-title">Teknisi &nbsp; <small><a href="{{ url('create-teknisi') }}"><span class="label label-info">+ Tambah Teknisi</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-teknisi') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
+                  <h3 class="panel-title">Teknisi
+                    @if (Session::get('username') == 'bsid')
+                      &nbsp; <small><a href="{{ url('create-teknisi') }}"><span class="label label-info">+ Tambah Teknisi</span></a> &nbsp; <a class="label label-info" href="{{ url('cetak-teknisi') }}" target="_blank" style="float: right;color: white"><span class="glyphicon glyphicon-print" aria-hidden="true" style="color: white"></span> &nbsp;  Cetak</a></small></h3>
+                    @endif
                 </div>
                 <br>
                 <div class="panel-body">
@@ -98,7 +101,7 @@
                         @foreach ($teknisi as $teknisi)
                           <tr>
                             <th scope="row">{{ $teknisi->kode_teknisi }}</th>
-                            <td><a href="{{ url('detail-teknisi', $teknisi->id_teknisi) }}">{{ $teknisi->nama_teknisi }}</a></td>
+                            <td>@if (Session::get('username') == 'bsid')<a href="{{ url('detail-teknisi', $teknisi->id_teknisi) }}">{{ $teknisi->nama_teknisi }}</a>@else {{ $teknisi->nama_teknisi }} @endif</td>
                             
                             <?php for ($i=1; $i < 13; $i++) {  ?>
                               <td>{{ $laporan[$a][$i] }}</td>
@@ -114,7 +117,7 @@
                     </table>
                   </div>
                   <p style="margin:0">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button>
+                    {{-- <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Cetak</button> --}}
                   </p>
                   <br>
                 </div>
