@@ -69,8 +69,9 @@
                     </address>
                   </div>
                   <p class="text-center">
-                    <button type="button" class="btn btn-default"onclick="location.href='{{ url()->previous() }}';">&larr; Kembali</button>
-                    <button type="button" class="btn btn-primary">Cetak</button>
+                    <button type="button" class="btn btn-default" onclick="location.href='{{ url('close') }}';">&larr; Kembali</button>
+                    {{-- <button type="button" class="btn btn-primary" onclick="location.href='{{ url('cetak-tiket',$data->id_laporan) }}';" target="_blank">Cetak</button> --}}
+                    <a class="btn btn-primary" href="{{ url('cetak-tiket',$data->id_laporan) }}" target="_blank"> Cetak</a>
                   </p>
                 </div>
                 <div class="col-md-8">

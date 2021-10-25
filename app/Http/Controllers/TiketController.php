@@ -8,6 +8,7 @@ use App\Models\User;
 use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use PDF;
 
 class TiketController extends Controller
 {
@@ -160,5 +161,30 @@ class TiketController extends Controller
             'Saturday' => 'Sabtu'
            );
         return view('dashboard.close-detail')->with('data',$data)->with('daftar_hari',$daftar_hari);
+    }
+
+    public function cetak_pdf($id)
+    {
+        //Cek Login
+        if (!Session::has('username')) {
+            return redirect()->to('/');
+        }
+        
+    	$data = Laporan::find($id);
+
+        $daftar_hari = array(
+            'Sunday' => 'Minggu',
+            'Monday' => 'Senin',
+            'Tuesday' => 'Selasa',
+            'Wednesday' => 'Rabu',
+            'Thursday' => 'Kamis',
+            'Friday' => 'Jumat',
+            'Saturday' => 'Sabtu'
+           );
+           
+        return view('dashboard.tiket-pdf')->with('data',$data)->with('daftar_hari',$daftar_hari);
+    	// $pdf = PDF::loadview('dashboard.tiket-pdf',['data'=>$laporan,'daftar_hari'=>$daftar_hari])->setOptions(['defaultFont' => 'sans-serif']);
+        // $nama = $laporan->kode_permohonan.".pdf";
+    	// return $pdf->download($nama);
     }
 }

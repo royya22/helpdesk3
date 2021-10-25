@@ -34,6 +34,7 @@ Route::get('close','TiketController@close');
 Route::get('form-close/{id}','TiketController@form_close');
 Route::post('store-close/{id}','TiketController@store_close');
 Route::get('close-detail/{id}','TiketController@close_detail');
+Route::get('cetak-tiket/{id}','TiketController@cetak_pdf');
 
 Route::get('insiden','InsidenController@index');
 Route::get('create-insiden','InsidenController@create');
@@ -67,3 +68,4 @@ Route::get('detail-teknisi/{id}','TeknisiController@show');
 Route::get('edit-teknisi/{id}','TeknisiController@edit');
 Route::post('update-teknisi/{id}','TeknisiController@update');
 Route::get('delete-teknisi/{id}','TeknisiController@destroy');
+Route::get('cetak-teknisi/{id}','TeknisiController@cetak_pdf');
