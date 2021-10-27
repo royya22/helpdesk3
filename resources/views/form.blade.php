@@ -8,7 +8,7 @@
     <meta name="description" content="Form Helpdesk">
     <meta name="author" content="BSID">
     <link rel="icon" href="https://setjen.mpr.go.id/img/setjen-min.png">
-    <title>Formulir</title>
+    <title>Layanan Helpdesk Setjen MPR RI</title>
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
