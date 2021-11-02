@@ -65,7 +65,7 @@ class LaporanController extends Controller
 
         $kode = $request['subjek'] ."". $request['unit'] ."". date('y');
         // echo $kode;
-        $kode_terakhir = Laporan::select('kode_permohonan')->where('kode_permohonan','like',$kode .'%')->first();
+        $kode_terakhir = Laporan::select('kode_permohonan')->where('kode_permohonan','like',$kode .'%')->latest('created_at')->first();
         // echo $kode_terakhir;
         if (!empty($kode_terakhir)) {
             $angka = substr($kode_terakhir->kode_permohonan,8);
