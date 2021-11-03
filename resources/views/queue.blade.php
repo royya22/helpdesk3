@@ -218,7 +218,8 @@
               <tr>
                 <td>{{ $laporan->kode_permohonan }}</td>
                 <td>{{ $laporan->created_at }}</td>
-                <td>{{ $laporan->nama_pemohon }}</td>
+                <td><b>{{ $laporan->nama_pemohon }}</b> <br> {{ $laporan->no_tlp }}
+                </td>
                 <td>{{ $laporan->k_unit->nama_unit }}</td>
                 <td>{{ $laporan->ruangan }}</td>
                 <td>{{ $laporan->k_subjek->subjek }}</td>
