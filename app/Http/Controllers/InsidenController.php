@@ -27,6 +27,7 @@ class InsidenController extends Controller
         $hitung['pending'] = Laporan::where('status','like','2')->count();
         $hitung['close'] = Laporan::where('status','like','3')->count();
 
+        //membuat array untuk hari
         $daftar_hari = array(
             'Sunday' => 'Minggu',
             'Monday' => 'Senin',
@@ -58,6 +59,7 @@ class InsidenController extends Controller
 
         $insiden = Insiden::select('kode_insiden')->max('kode_insiden');
 
+        //pembuatan kode untuk insiden
         if ($insiden == null) {
             $kode_insiden = "IND00001";
         }else{
@@ -113,9 +115,6 @@ class InsidenController extends Controller
         $tambah->eskalasi = $request['eskalasi'];
         $tambah->status = $request['status'];
         $tambah->teknisi = serialize($request['teknisi']);
-
-        // print_r(unserialize($tambah->kategori));
-        // echo $tambah->kode_insiden;
 
         $tambah->save();
         return redirect()->to('insiden');

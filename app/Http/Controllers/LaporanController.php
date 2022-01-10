@@ -20,9 +20,6 @@ class LaporanController extends Controller
     public function index()
     {
         $laporan = Laporan::orderBy('status','ASC')->orderBy('id_laporan','DESC')->get();
-        // $unit = Unit::orderBy('id_unit','ASC')->get();
-        // $subjek = Subjek::orderBy('id_subjek','ASC')->get();
-        // echo $laporan->kode_permohonan;
         return view('queue')->with('laporan', $laporan);
     }
 
@@ -36,13 +33,6 @@ class LaporanController extends Controller
         $unit = Unit::orderBy('id_unit','ASC')->get();
         $subjek = Subjek::orderBy('id_subjek','ASC')->get();
         $biro = $unit->groupBy('biro');
-        
-        // foreach ($biro as $biro => $unit) {
-        //     echo $biro."<br>";
-        //     foreach ($unit as $unit) {
-        //         echo $unit."<br>";
-        //     }    echo "<br>";
-        // }
         return view('form')->with('unit',$unit)->with('subjek',$subjek)->with('biro',$biro);
     }
 
@@ -63,21 +53,17 @@ class LaporanController extends Controller
             'deskripsi' => 'required'
         ]);
 
+        //pembuatan kode untuk laporan
         $kode = $request['subjek'] ."". $request['unit'] ."". date('y');
-        // echo $kode;
         $kode_terakhir = Laporan::select('kode_permohonan')->where('kode_permohonan','like',$kode .'%')->latest('created_at')->first();
-        // echo $kode_terakhir;
         if (!empty($kode_terakhir)) {
             $angka = substr($kode_terakhir->kode_permohonan,8);
-            // echo $angka;
             $angka = (int) $angka + 1;
             $angka = str_pad($angka,3,"0",STR_PAD_LEFT);
         } else {
             $angka = "001";
         }
-        
         $kode = $kode ."". $angka;
-        // echo $kode;
 
         $tambah = new Laporan();
         $tambah->kode_permohonan = $kode;
@@ -90,9 +76,7 @@ class LaporanController extends Controller
         $tambah->status = "1";
 
         $tambah->save();
-        // echo "halo";
         return view('sent')->with('data',$tambah);
-        // return redirect()->to('laporan');
     }
 
     /**

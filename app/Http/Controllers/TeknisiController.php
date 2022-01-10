@@ -109,8 +109,6 @@ class TeknisiController extends Controller
             $kode_teknisi = str_pad($kode,3,"0",STR_PAD_LEFT);
             $kode_teknisi = "T". $kode_teknisi;
         }
-
-        // echo $kode_teknisi;
         
         return view('dashboard.form-teknisi')->with('kode_teknisi',$kode_teknisi);
     }
@@ -206,11 +204,8 @@ class TeknisiController extends Controller
             ]);
         }
 
-        // $tambah = new User();
-        // $tambah->kode_teknisi = $request['kode_teknisi'];
         $update->nama_teknisi = $request['nama_teknisi'];
         $update->user_teknisi = strtolower($request['user_teknisi']);
-        // $tambah->password_teknisi = Hash::make($request['password']);
         $update->save();
 
         return redirect()->to('teknisi');
@@ -232,14 +227,6 @@ class TeknisiController extends Controller
         $hapus = User::find($id);
         $hapus->hide = true;
         $hapus->save();
-
-        // //Hapus laporan terkait
-        // foreach($hapus->laporan as $laporan){
-        //     $laporan->delete();
-        // }
-
-        // //Hapus teknisi
-        // $hapus->delete();
 
         return redirect()->to('teknisi');
     }

@@ -60,26 +60,6 @@ class UnitController extends Controller
             $a++;
         }
 
-        //Dummy tampilan
-        // echo "<br>";
-
-        // $a = 1;
-        // foreach ($unit as $key) {
-        //     for ($i=1; $i < 13; $i++) { 
-        //         echo $laporan[$a][$i]." ";
-                
-        //     }
-        //     echo $totalh[$a];
-        //     $a++;
-        //     echo "<br>";
-        // }
-
-        // // $totalv[$i] = 0;
-        // for ($i=1; $i < 13; $i++) {
-            
-        //     echo $totalv[$i]." ";
-        // } echo $totalv[13];
-
         return view('dashboard.master-unit')->with('unit',$unit)->with('hitung',$hitung)->with('laporan',$laporan)->with('totalh',$totalh)->with('totalv',$totalv);
     }
 

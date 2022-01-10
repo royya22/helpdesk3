@@ -60,28 +60,6 @@ class SubjekController extends Controller
             $totalv[13] = $totalv[13] + $totalh[$a];
             $a++;
         }
-
-        //Dummy tampilan
-        // echo "<br>";
-
-        // $a = 1;
-        // foreach ($subjek as $key) {
-        //     for ($i=1; $i < 13; $i++) { 
-        //         echo $laporan[$a][$i]." ";
-                
-        //     }
-        //     echo $totalh[$a];
-        //     $a++;
-        //     echo "<br>";
-        // }
-
-        // // $totalv[$i] = 0;
-        // for ($i=1; $i < 13; $i++) {
-            
-        //     echo $totalv[$i]." ";
-        // } echo $totalv[13];
-        
-        
         
         return view('dashboard.master-subjek')->with('subjek',$subjek)->with('hitung',$hitung)->with('laporan',$laporan)->with('totalh',$totalh)->with('totalv',$totalv);
     }
@@ -114,7 +92,6 @@ class SubjekController extends Controller
             return redirect()->to('/');
         }
         
-        // echo "tesssss";
         $this->validate($request, [
             'kode_subjek' => 'required|unique:subjek',
             'subjek' => 'required'
@@ -224,14 +201,6 @@ class SubjekController extends Controller
         $hapus = Subjek::find($id);
         $hapus->hide = true;
         $hapus->save();
-
-        // //Hapus laporan terkait
-        // foreach($hapus->laporan as $laporan){
-        //     $laporan->delete();
-        // }
-
-        // //hapus subjek
-        // $hapus->delete();
 
         return redirect()->to('subjek');
     }
