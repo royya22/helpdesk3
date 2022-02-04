@@ -19,7 +19,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $laporan = Laporan::orderBy('status','ASC')->orderBy('id_laporan','DESC')->get();
+        $laporan = Laporan::orderBy('status','ASC')->orderBy('id_laporan','DESC')->latest()->take(100)->get();
         return view('queue')->with('laporan', $laporan);
     }
 
