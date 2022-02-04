@@ -223,7 +223,10 @@
                 <td>{{ $laporan->k_unit->nama_unit }}</td>
                 <td>{{ $laporan->ruangan }}</td>
                 <td>{{ $laporan->k_subjek->subjek }}</td>
-                <td>{{ $laporan->deskripsi }}</td>
+                <td>
+                  <?php if($laporan->k_subjek->kode_subjek == "PTA"){echo "Data Sensitif"}else{echo $laporan->deskripsi};  ?>
+                  {{-- {{ $laporan->deskripsi }} --}}
+                </td>
                 <td><span style="display: inline-block; width: 100px;height: 20px;" class="label 
                     <?php 
                       if ($laporan->status == "1") {
