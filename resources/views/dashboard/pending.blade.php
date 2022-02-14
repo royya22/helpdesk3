@@ -79,7 +79,7 @@
                             <th scope="row">{{ $data->kode_permohonan }}</th>
                             <td>{{ $daftar_hari[date('l', strtotime($data->created_at))] }}, <br> {{ $data->created_at }}</td>
                             <td>
-                              <b>{{ $data->nama_pemohon }}</b> <br> <small>{{ $data->k_unit->nama_unit }}</small>
+                              <b>{{ $data->nama_pemohon }}</b> <br> <small>{{ $data->k_unit->nama_unit }}</small> <br> <small>{{ $data->no_tlp }}</small>
                             </td>
                             <td>
                               <b>{{ $data->k_subjek->subjek }}</b> <br> <span>{{ $data->deskripsi }}</span>
