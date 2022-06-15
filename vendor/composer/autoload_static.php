@@ -570,6 +570,7 @@ class ComposerStaticInit8bfae9bb1f64a3ff15ddb20b00f9079e
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Insiden' => __DIR__ . '/../..' . '/app/Models/Insiden.php',
         'App\\Models\\Laporan' => __DIR__ . '/../..' . '/app/Models/Laporan.php',
+        'App\\Models\\Program' => __DIR__ . '/../..' . '/app/Models/Program.php',
         'App\\Models\\Subjek' => __DIR__ . '/../..' . '/app/Models/Subjek.php',
         'App\\Models\\Teknisi' => __DIR__ . '/../..' . '/app/Models/Teknisi.php',
         'App\\Models\\Unit' => __DIR__ . '/../..' . '/app/Models/Unit.php',
