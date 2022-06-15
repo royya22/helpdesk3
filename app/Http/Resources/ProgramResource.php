@@ -21,6 +21,9 @@ class ProgramResource extends JsonResource
         }elseif ($this->status == 3) {
             $status = "Close";
         }
+
+        $teknisi = unserialize($this->teknisi);
+        if ($teknisi == null) {$teknisi = "";}
         
         return [
             'id' => $this->id_laporan,
@@ -34,7 +37,7 @@ class ProgramResource extends JsonResource
             'status' => $status,
             'keterangan_pending' => $this->keterangan_pending,
             'keterangan_close' => $this->keterangan_close,
-            'teknisi' => $this->teknisi,
+            'teknisi' => $teknisi,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
