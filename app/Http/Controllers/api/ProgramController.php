@@ -19,7 +19,7 @@ class ProgramController extends Controller
     {
         $data = Laporan::latest()->get();
         // $data = Laporan::orderBy('status','ASC')->orderBy('id_laporan','DESC')->latest()->take(100)->get();
-        return response()->json([ProgramResource::collection($data), 'Programs fetched.']);
+        return response()->json([ProgramResource::collection($data)]);
         // return Program::all();
     }
 

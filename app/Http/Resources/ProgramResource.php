@@ -14,16 +14,24 @@ class ProgramResource extends JsonResource
      */
     public function toArray($request)
     {
+        if ($this->status == 1) {
+            $status = "Open";
+        }elseif ($this->status == 2) {
+            $status = "Pending";
+        }elseif ($this->status == 3) {
+            $status = "Close";
+        }
+        
         return [
             'id' => $this->id_laporan,
             'kode_permohonan' => $this->kode_permohonan,
             'nama_pemohon' => $this->nama_pemohon,
             'no_tlp' => $this->no_tlp,
-            'unit' => $this->unit,
+            'unit' => $this->k_unit->nama_unit,
             'ruangan' => $this->ruangan,
-            'subjek' => $this->subjek,
+            'subjek' => $this->k_subjek->subjek,
             'deskripsi' => $this->deskripsi,
-            'status' => $this->status,
+            'status' => $status,
             'keterangan_pending' => $this->keterangan_pending,
             'keterangan_close' => $this->keterangan_close,
             'teknisi' => $this->teknisi,
