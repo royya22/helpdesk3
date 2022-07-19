@@ -29,7 +29,6 @@ class ProgramResource extends JsonResource
             'id' => $this->id_laporan,
             'kode_permohonan' => $this->kode_permohonan,
             'nama_pemohon' => $this->nama_pemohon,
-            'no_tlp' => $this->no_tlp,
             'unit' => $this->k_unit->nama_unit,
             'ruangan' => $this->ruangan,
             'subjek' => $this->k_subjek->subjek,
