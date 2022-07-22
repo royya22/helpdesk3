@@ -24,7 +24,7 @@ class ProgramResource extends JsonResource
 
         $teknisi = unserialize($this->teknisi);
         if ($teknisi == null) {$teknisi = "";}
-        date_default_timezone_set('Europe/London');
+        date_default_timezone_set('UTC');
         // $create = $this->created_at->setTimezone('Asia/Singapore');
         
         return [
