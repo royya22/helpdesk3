@@ -21,7 +21,7 @@ Route::get('laporan','LaporanController@index');
 Route::get('create-laporan','LaporanController@create');
 Route::post('store-laporan','LaporanController@store');
 
-Route::get('login','DashboardController@login');
+Route::get('login-helpdesk','DashboardController@login');
 Route::post('cek-login','DashboardController@cek_login');
 Route::get('logout','DashboardController@logout');
 Route::get('dashboard','DashboardController@index');

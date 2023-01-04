@@ -3,6 +3,8 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    ErrorDocument 403 https://helpdesk.setjen.mpr.go.id/
+
     RewriteEngine On
 
     # Handle Authorization Header
