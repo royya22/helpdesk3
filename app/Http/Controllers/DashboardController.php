@@ -31,7 +31,7 @@ class DashboardController extends Controller
         
         //mengecek data yang dimasukkan user ke halaman login
         if (empty($user)) {
-            return redirect()->to('login?pesan=gagal1');
+            return redirect()->to('login-helpdesk?pesan=gagal1');
         }else {
             $pass = Hash::check($request['pass'],$user->password_teknisi);
 
@@ -40,7 +40,7 @@ class DashboardController extends Controller
                     $request->session()->put('nama',$user->nama_teknisi);
                 return redirect()->to('dashboard');
             }else{
-                return redirect()->to('login?pesan=gagal2');
+                return redirect()->to('login-helpdesk?pesan=gagal2');
             }
         }
         
