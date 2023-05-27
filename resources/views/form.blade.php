@@ -135,7 +135,7 @@
                         </span>
                       @endif
                       <br>
-                      <textarea name="deskripsi" class="form-control" rows="3" pattern="^((?!href).)*$" placeholder="Deskripsi Layanan / Keluhan / Gangguan">{{ old('deskripsi') }}</textarea>
+                      <textarea name="deskripsi" class="form-control" rows="3" onkeyup="this.value = this.value.replace(/href|<|>/gi , '' )" placeholder="Deskripsi Layanan / Keluhan / Gangguan">{{ old('deskripsi') }}</textarea>
                         @if ($errors->has('deskripsi'))
                           <span class="help-block">
                             <strong style="color: red">{{ $errors->first('deskripsi') }}</strong>
